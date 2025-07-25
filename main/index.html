@@ -19,37 +19,180 @@
     --clr-primary:#0c7c59;
     --clr-accent:#ff6b6b;
     --clr-text:#222;
+    --clr-shadow: 0 4px 12px rgba(0,0,0,.08);
   }
   [data-theme="dark"]{
     --clr-bg:#151515;
     --clr-bg-alt:#1e1e1e;
     --clr-text:#eee;
+    --clr-shadow: 0 4px 18px rgba(0,0,0,.45);
   }
-  body{margin:0;font-family:'Poppins',sans-serif;background:var(--clr-bg);color:var(--clr-text);transition:.3s}
-  header{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:url('img/hero.jpg')center/cover;position:relative;color:#fff}
-  header::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45)}
-  header h1, header p, header button{position:relative;z-index:2}
-  h1{font-size:3.5rem;font-weight:700;margin:.2em 0}
-  h2{font-size:2.2rem;margin-top:2.5em}
-  section{max-width:1100px;margin:0 auto;padding:3rem 1rem}
-  .grid{display:grid;gap:2rem}
-  .grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-  .grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-  .card{background:var(--clr-bg-alt);border-radius:12px;padding:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:.3s}
-  .card:hover{transform:translateY(-5px)}
-  .btn{background:var(--clr-primary);color:#fff;border:none;padding:.8em 1.4em;border-radius:30px;font-weight:600;cursor:pointer}
-  .btn-accent{background:var(--clr-accent)}
-  .storyboard{position:relative;padding:2rem 0}
-  .storyboard::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:4px;background:var(--clr-primary);transform:translateX(-50%)}
-  .story-item{margin:2rem 0;display:flex;align-items:center;gap:1rem}
-  .story-item:nth-child(odd){flex-direction:row-reverse;text-align:right}
-  .story-item img{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--clr-primary)}
-  .team-grid img{width:120px;height:120px;border-radius:50%;object-fit:cover}
-  footer{background:var(--clr-bg-alt);padding:1.5em;text-align:center;font-size:.9em;margin-top:3em}
-  /* Lottie */
-  #lottie-hero{width:200px;height:200px}
-  /* Theme switch */
-  #theme-toggle{position:fixed;top:1rem;right:1rem;z-index:999;background:var(--clr-primary);color:#fff;border:none;border-radius:50%;width:50px;height:50px;cursor:pointer}
+
+  body {
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:var(--clr-bg);
+    color:var(--clr-text);
+    transition:.3s;
+  }
+
+  header {
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:url('img/hero.jpg')center/cover;
+    position:relative;
+    color:#fff;
+  }
+
+  header::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  header h1, header p, header button {
+    position:relative;
+    z-index:2;
+  }
+
+  h1 {
+    font-size:3.5rem;
+    font-weight:700;
+    margin:.2em 0;
+  }
+
+  h2 {
+    font-size:2.2rem;
+    margin-top:2.5em;
+  }
+
+  section {
+    max-width:1100px;
+    margin:0 auto;
+    padding:3rem 1rem;
+  }
+
+  .grid {
+    display:grid;
+    gap:2rem;
+  }
+
+  .grid-2 {
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  }
+
+  .grid-3 {
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .btn {
+    background:var(--clr-primary);
+    color:#fff;
+    border:none;
+    padding:.8em 1.4em;
+    border-radius:30px;
+    font-weight:600;
+    cursor:pointer;
+  }
+
+  .btn-accent {
+    background:var(--clr-accent);
+  }
+
+  .storyboard {
+    position:relative;
+    padding:2rem 0;
+  }
+
+  .storyboard::before {
+    content:'';
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:4px;
+    background:var(--clr-primary);
+    transform:translateX(-50%);
+  }
+
+  .story-item {
+    margin:2rem 0;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+  }
+
+  .story-item:nth-child(odd){
+    flex-direction:row-reverse;
+    text-align:right;
+  }
+
+  .story-item img {
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--clr-primary);
+  }
+
+  .team-grid img {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+  }
+
+  footer {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding:1.5em;
+    text-align:center;
+    font-size:.9em;
+    margin-top:3em;
+  }
+
+  #lottie-hero {
+    width:200px;
+    height:200px;
+  }
+
+  #theme-toggle {
+    position:fixed;
+    top:1rem;
+    right:1rem;
+    z-index:999;
+    background:var(--clr-primary);
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    cursor:pointer;
+  }
   </style>
 </head>
 
@@ -64,14 +207,11 @@
   <button class="btn" onclick="scrollToSection('intro')">Explore&nbsp;<i class="fa-solid fa-arrow-down"></i></button>
 </header>
 
-<!-- INTRO -->
 <section id="intro" data-aos="fade-up">
   <h2>Introduction</h2>
-  <!-- EDITABLE MARKDOWN -->
   <p>Botanical gardens are temples of biodiversity—yet too often they remain inaccessible to visitors with sensory impairments. Our multidisciplinary team partnered with Glasgow Botanic Gardens and the broader community to re-imagine inclusive design through low-cost, high-impact prototypes.</p>
 </section>
 
-<!-- RESEARCH -->
 <section id="research" data-aos="fade-up">
   <h2>Our Research</h2>
   <div class="grid grid-2">
@@ -94,7 +234,6 @@
   </div>
 </section>
 
-<!-- STEPS -->
 <section id="steps" data-aos="fade-up">
   <h2>Project Steps</h2>
   <ol class="storyboard">
@@ -106,15 +245,11 @@
   </ol>
 </section>
 
-<!-- PROTOTYPES -->
 <section id="prototypes" data-aos="fade-up">
   <h2>Prototypes & Sketches</h2>
   <div id="proto-grid" class="grid grid-3"></div>
-  <br>
-  <button class="btn btn-accent" onclick="addPrototype()"><i class="fa-solid fa-plus"></i> Add New Prototype</button>
 </section>
 
-<!-- TEAM -->
 <section id="team" data-aos="fade-up">
   <h2>Team</h2>
   <div class="grid grid-3 team-grid">
@@ -133,54 +268,54 @@
   </div>
 </section>
 
-<!-- CONCLUSION -->
 <section id="conclusion" data-aos="fade-up">
   <h2>Conclusion</h2>
-  <!-- EDITABLE MARKDOWN -->
   <p>By combining tactile, auditory and visual channels, our toolkit transforms a garden visit from exclusion into exploration. The prototypes are low-cost, scalable and ready for local adaptation—proving that inclusive design can be beautiful <em>and</em> sustainable.</p>
 </section>
 
-<!-- FOOTER -->
 <footer>
   © 2024 Sensory Garden Access Project – built with <i class="fa-solid fa-heart" style="color:var(--clr-accent)"></i> for everyone.
 </footer>
 
-<!-- MODAL for solo prototype pages -->
-<dialog id="modal">
-  <article id="modal-content"></article>
-  <button class="btn" onclick="modal.close()">Close</button>
+<dialog id="modal" style="padding:0;border:none;background:transparent;">
+  <div id="modal-overlay" style="
+    position:fixed;
+    inset:0;
+    background:rgba(30,40,40,0.35);
+    backdrop-filter:blur(6px);
+    z-index:0;
+    transition:.3s;
+  "></div>
+  <article id="modal-content" style="z-index:1;position:relative;"></article>
 </dialog>
 
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script>
-/* ---------- PROTOTYPES JSON – EDIT HERE ---------- */
 const prototypes = [
   {
     id:"brailleBoard",
     name:"Information Board with Braille & QR",
     img:"img/proto.jpg",
     story:"A waist-high board with embossed Braille labels, tactile icons and a large-print QR code that launches a microsite with BSL/ASL videos and 3-minute audio description of each plant.",
-    sketch:"<img src='img/sketch-board.png' style='width:100%;border-radius:8px;margin-top:1em'>"
+    sketch:"<img src='img/sketch.jpg' style='width:100%;border-radius:8px;margin-top:1em'>"
   },
   {
     id:"textureBook",
     name:"Textured Guidebook",
     img:"img/proto.jpg",
     story:"Pocket-sized concertina booklet: each spread contains a real pressed flower, embossed outline and texture swatch (velvet, bark, serrated edge). Free for disabled visitors; tourists can buy a keepsake edition.",
-    sketch:"<img src='img/sketch-book.png' style='width:100%;border-radius:8px;margin-top:1em'>"
+    sketch:"<img src='img/sketch.jpg' style='width:100%;border-radius:8px;margin-top:1em'>"
   },
   {
     id:"videoSite",
     name:"Website with BSL/ASL & QR",
     img:"img/proto.jpg",
     story:"Responsive site offering seasonal highlights in sign-language, audio-only navigation, high-contrast toggle and offline mode via cached QR codes.",
-    sketch:"<img src='img/sketch-website.png' style='width:100%;border-radius:8px;margin-top:1em'>"
+    sketch:"<img src='img/sketch.jpg' style='width:100%;border-radius:8px;margin-top:1em'>"
   }
 ];
 
-/* ---------- Render Prototype Cards ---------- */
 function renderPrototypes(){
   const grid = document.getElementById('proto-grid');
   grid.innerHTML='';
@@ -196,42 +331,52 @@ function renderPrototypes(){
   });
 }
 
-/* ---------- Solo Page Modal ---------- */
 function openModal(id){
   const p = prototypes.find(el=>el.id===id);
   const m=document.getElementById('modal-content');
   m.innerHTML=`
-    <h2>${p.name}</h2>
-    <img src="${p.img}" alt="${p.name}" style="width:100%;border-radius:8px">
-    <p>${p.story}</p>
-    ${p.sketch}
+    <div style="
+      background: var(--clr-bg-alt);
+      /* Removed glass blur and transparency */
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 22px;
+      box-shadow: var(--clr-shadow);
+      padding: 2.5rem 2rem 2rem 2rem;
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      animation: modalPop .4s cubic-bezier(.5,1.5,.5,1) 1;
+    ">
+      <button onclick="modal.close()" aria-label="Close" style="
+        position:absolute;top:18px;right:18px;background:var(--clr-primary);color:#fff;border:none;border-radius:50%;width:38px;height:38px;box-shadow:0 2px 8px rgba(0,0,0,.10);font-size:1.2em;cursor:pointer;z-index:2;
+      "><i class="fa-solid fa-xmark"></i></button>
+      <img src="${p.img}" alt="${p.name}" style="width:120px;height:120px;object-fit:cover;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.10);margin-bottom:1.5em;border:4px solid var(--clr-primary)">
+      <h2 style="font-size:2rem;font-weight:700;color:var(--clr-primary);margin-bottom:.5em">${p.name}</h2>
+      <p style="font-size:1.1em;color:var(--clr-text);margin-bottom:1.5em">${p.story}</p>
+      <div style="margin-bottom:1em">${p.sketch}</div>
+    </div>
   `;
   modal.showModal();
 }
 
-/* ---------- Add New Prototype ---------- */
-function addPrototype(){
-  const name=prompt('Prototype name:');
-  if(!name) return;
-  prototypes.push({
-    id:name.replace(/\s+/g,'').toLowerCase(),
-    name,
-    img:"img/placeholder.jpg",
-    story:"Story coming soon...",
-    sketch:"<img src='img/placeholder-sketch.png' style='width:100%;border-radius:8px;margin-top:1em'>"
-  });
-  renderPrototypes();
-  alert('Refresh page to see new solo page!');
-}
+document.getElementById('modal-overlay').onclick = () => modal.close();
+document.querySelector('#modal > button.btn')?.remove();
+const style = document.createElement('style');
+style.innerHTML = `@keyframes modalPop { 0% { transform:scale(.8); opacity:0; } 100% { transform:scale(1); opacity:1; } }`;
+document.head.appendChild(style);
 
-/* ---------- Theme Toggle ---------- */
-const toggle=document.getElementById('theme-toggle');
-toggle.onclick=()=>{
-  document.documentElement.toggleAttribute('data-theme','dark');
-  toggle.innerHTML=document.documentElement.hasAttribute('data-theme')?'<i class="fa-solid fa-sun"></i>':'<i class="fa-solid fa-moon"></i>';
+const toggle = document.getElementById('theme-toggle');
+toggle.onclick = () => {
+  if (document.documentElement.getAttribute('data-theme') === 'dark') {
+    document.documentElement.removeAttribute('data-theme');
+    toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    toggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  }
 };
 
-/* ---------- Helpers ---------- */
 const scrollToSection=id=>document.getElementById(id).scrollIntoView({behavior:'smooth'});
 AOS.init({duration:800,once:true});
 renderPrototypes();
