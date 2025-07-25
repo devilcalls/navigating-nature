@@ -381,6 +381,37 @@
     height:0;          /* no overshoot line after the final dot */
   }
 
+  /* === LIGHTBOX OVERLAY === */
+  .lightbox-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(4px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:9999;
+  }
+  .lightbox-overlay.active{
+    opacity:1;
+    visibility:visible;
+  }
+  .lightbox-overlay img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 8px 32px rgba(0,0,0,.5);
+    cursor:pointer;
+    transform:scale(.9);
+    transition:.3s;
+  }
+  .lightbox-overlay.active img{
+    transform:scale(1);
+  }
+
   @keyframes pulseExplore {
     0% {
       transform: scale(1);
@@ -733,6 +764,28 @@ window.onscroll = function() {
 toTopBtn.onclick = function() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 };
+
+/* === AUTO-LIGHTBOX FOR ALL IMAGES === */
+(function(){
+  /* 1. create overlay once */
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  const imgInOverlay = document.createElement('img');
+  overlay.appendChild(imgInOverlay);
+  document.body.appendChild(overlay);
+
+  /* 2. attach click handler to every <img> */
+  document.querySelectorAll('img').forEach(img=>{
+    img.style.cursor='zoom-in';
+    img.addEventListener('click',()=>{
+      imgInOverlay.src = img.src;
+      overlay.classList.add('active');
+    });
+  });
+
+  /* 3. close on overlay click or image click */
+  overlay.addEventListener('click',()=>overlay.classList.remove('active'));
+})();
 </script>
 </body>
 </html>
