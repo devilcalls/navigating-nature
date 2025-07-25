@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Sensory Garden Access Project</title>
+  <title>Team 6 Accessible Tour Project</title>
 
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
@@ -20,6 +20,12 @@
     --clr-accent:#ff6b6b;
     --clr-text:#222;
     --clr-shadow: 0 4px 12px rgba(0,0,0,.08);
+    --primary:#00856f;
+    --secondary:#f5f5f5;
+    --text:#333;
+    --dot:#00856f;
+    --line:#d0d0d0;
+
   }
   [data-theme="dark"]{
     --clr-bg:#151515;
@@ -52,7 +58,7 @@
     content:'';
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.25);
+    background:rgba(0,0,0,0.55);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
   }
@@ -182,8 +188,8 @@
 
   #theme-toggle {
     position:fixed;
-    top:1rem;
-    right:1rem;
+    bottom:1.5rem;
+    right:1.5rem;
     z-index:999;
     background:var(--clr-primary);
     color:#fff;
@@ -192,57 +198,326 @@
     width:50px;
     height:50px;
     cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,0.10);
+  }
+
+  #to-top-btn {
+    position:fixed;
+    bottom:5.5rem;
+    right:1.5rem;
+    z-index:998;
+    background:var(--clr-accent);
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,0.10);
+    display:none;
+    font-size:1.3em;
+  }
+
+  #modal::-webkit-scrollbar {
+    width: 0.5em;
+    background: transparent;
+  }
+  #modal::-webkit-scrollbar-thumb {
+    background: var(--clr-primary);
+    border-radius: 8px;
+  }
+  #modal {
+    scrollbar-width: thin;
+    scrollbar-color: var(--clr-primary) transparent;
+  }
+  /* Optionally, to hide the scrollbar completely: */
+  /*
+  #modal {
+    overflow: hidden;
+  }
+  */
+
+  /* Navigation Styles */
+  #main-nav {
+    width: 100%;
+    background: var(--clr-bg-alt);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 0;
+    font-family: 'Poppins', sans-serif;
+  }
+  #main-nav ul {
+    display: flex;
+    gap: 2.5em;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  #main-nav ul li a {
+    text-decoration: none;
+    color: var(--clr-primary);
+    padding: .4em 1em;
+    border-radius: 20px;
+    transition: .2s;
+    display: block;
+  }
+  #main-nav ul li a:hover,
+  #main-nav ul li a:focus {
+    background: var(--clr-primary);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    outline: none;
+  }
+
+  /* Hamburger menu styles */
+  #nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--clr-primary);
+    position: absolute;
+    right: 1.5em;
+    top: 1em;
+    z-index: 1001;
+    cursor: pointer;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 800px) {
+    #main-nav {
+      padding: 0.5em 0.5em;
+      justify-content: flex-start;
+    }
+    #nav-toggle {
+      display: block;
+    }
+    #main-nav ul {
+      flex-direction: column;
+      gap: 0.5em;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100vw;
+      background: var(--clr-bg-alt);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      padding: 1em 0;
+      margin: 0;
+      font-size: 1.1em;
+      font-weight: 500;
+      display: none;
+    }
+    #main-nav.open ul {
+      display: flex;
+    }
+    #main-nav ul li a {
+      padding: 1em 2em;
+      border-radius: 0;
+      font-size: 1em;
+    }
+  }
+
+  /* Optional: smooth transition for menu */
+  #main-nav ul {
+    transition: all 0.3s;
+  }
+
+  .timeline-container{
+    max-width:700px;
+    margin:40px auto;
+    font-family:'Poppins',sans-serif;
+    color:var(--text);
+  }
+  .timeline-item{
+    position:relative;
+    padding-left:50px;
+    padding-bottom:30px;
+  }
+  .timeline-item::before{
+    content:'';
+    position:absolute;
+    left:15px;
+    top:0;
+    height:100%;
+    width:2px;
+    background:var(--line);
+  }
+  .timeline-dot{
+    position:absolute;
+    left:7px;
+    top:0;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:var(--dot);
+    border:4px solid #fff;
+    box-shadow:0 0 0 3px var(--primary);
+  }
+  .timeline-date{
+    font-weight:600;
+    font-size:.9rem;
+    color:var(--primary);
+    margin-bottom:4px;
+  }
+  .timeline-title{
+    font-weight:600;
+    font-size:1.1rem;
+    margin:0 0 6px;
+  }
+  .timeline-desc{
+    font-size:.95rem;
+    line-height:1.4;
+    color:#555;
+    margin:0;
+  }
+  .timeline-item:last-child::before{
+    height:0;          /* no overshoot line after the final dot */
+  }
+
+  @keyframes pulseExplore {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 6px 24px rgba(67,233,123,0.18);
+      filter: brightness(1);
+    }
+    100% {
+      transform: scale(1.08);
+      box-shadow: 0 12px 32px rgba(38,249,215,0.28);
+      filter: brightness(1.15);
+    }
   }
   </style>
 </head>
 
 <body>
-<button id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+<!-- NAVIGATION -->
+<nav id="main-nav">
+  <button id="nav-toggle" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button>
+  <ul>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#steps">Steps</a></li>
+    <li><a href="#prototypes">Prototypes</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
 
 <!-- HERO -->
 <header>
-  <lottie-player id="lottie-hero" src="https://assets9.lottiefiles.com/packages/lf20_fcfjwiyb.json" loop autoplay></lottie-player>
-  <h1 data-aos="fade-up">Sensory Garden Access Project</h1>
-  <p data-aos="fade-up" data-aos-delay="200">Co-designing inclusive experiences for blind, deaf and deaf-blind visitors in botanical gardens.</p>
-  <button class="btn" onclick="scrollToSection('intro')">Explore&nbsp;<i class="fa-solid fa-arrow-down"></i></button>
+  <lottie-player id="lottie-hero" src="https://assets9.lottiefiles.com/packages/lf20_8wREpI.json" loop autoplay speed="0.5" style="z-index: 99;"></lottie-player>
+  <h1 data-aos="fade-up">Accessible Tours Project 2025</h1>
+  <p data-aos="fade-up" data-aos-delay="200">
+    Glasgow Botanic Gardens wants to make its tours welcoming for deaf and blind visitors by learning their specific needs and adapting the current tour materials accordingly.
+  </p>
+  <!-- Replace your Explore button in the HERO section with this lively, larger version -->
+  <!-- Make the whole Explore button lively with a pulsing effect and gradient color -->
+  <button class="btn"
+    style="
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+      color:#fff;
+      margin-top: 1.5em;
+      font-size:1.1em;
+      padding:1.1em 2em;
+      border-radius:40px;
+      box-shadow:0 6px 24px rgba(67,233,123,0.18);
+      font-weight:700;
+      letter-spacing:0.03em;
+      transition:transform 0.18s, box-shadow 0.18s;
+      animation: pulseExplore 1.2s infinite alternate;
+      border:none;
+    "
+    onclick="scrollToSection('intro')">
+    Explore&nbsp;<i class="fa-solid fa-arrow-down"></i>
+  </button>
 </header>
 
 <section id="intro" data-aos="fade-up">
   <h2>Introduction</h2>
-  <p>Botanical gardens are temples of biodiversity—yet too often they remain inaccessible to visitors with sensory impairments. Our multidisciplinary team partnered with Glasgow Botanic Gardens and the broader community to re-imagine inclusive design through low-cost, high-impact prototypes.</p>
+  <p>
+      The Friends of Glasgow Botanic Gardens offers free tours to the public seasonally at multiple times throughout the week. 
+      Tours are delivered by volunteer guides who research and train on facts and history about the Gardens, plant collections, wildlife, history, and artworks. 
+      Visitors and locals regularly attend, making use of this special amenity in Glasgow. 
+      The Guides want to offer tours to deaf and/or blind visitors that are meaningful and enjoyable, and seek to understand their unique accessibility needs to adapt existing tour materials and enhance their enjoyment of the Gardens.
+  </p>
+  <img src="img/actualtour.jpg" alt="Guided Tour in Glasgow Botanic Gardens" style="display:block;margin:2em auto 0 auto;max-width:600px;width:100%;border-radius:18px;box-shadow:0 4px 18px rgba(0,0,0,0.10);">
 </section>
 
 <section id="research" data-aos="fade-up">
   <h2>Our Research</h2>
-  <div class="grid grid-2">
-    <div class="card">
-      <h3><i class="fa-solid fa-microphone"></i> Field Interviews</h3>
-      <p>15 blind / deaf participants shared real-world barriers and desired multisensory cues.</p>
-    </div>
-    <div class="card">
-      <h3><i class="fa-solid fa-map-location-dot"></i> Site Walk-throughs</h3>
-      <p>We shadowed visitors, logged navigation pain-points and audio-gaps.</p>
-    </div>
-    <div class="card">
-      <h3><i class="fa-solid fa-globe"></i> Benchmarking</h3>
-      <p>We analysed 8 leading gardens worldwide (Kew, Brooklyn, Madrid, etc.).</p>
-    </div>
-    <div class="card">
-      <h3><i class="fa-solid fa-users"></i> Co-creation Workshops</h3>
-      <p>Three rapid prototyping sprints with guides, horticulturists and disability advocates.</p>
+  <div style="display: flex; justify-content: center; padding: 1rem;">
+    <div class="card" style="
+      text-align:center;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      max-width: 500px;
+    ">
+      <img src="img/navnature.jpg" alt="Research Website Preview" style="width:100%;height:auto;display:block;border-top-left-radius:16px;border-top-right-radius:16px;">
+      <div style="padding: 1.5rem;">
+        <h3><i class="fa-solid fa-book-open-reader"></i> Navigating Nature (Research)</h3>
+        <p style="margin-top: 0.8em; font-size: 0.95em; color: var(--clr-text);">
+          Explore our original in-depth research findings and accessibility insights that shaped this project.
+        </p>
+        <a href="https://ninguest.github.io/navigating-nature/navigatingnature/" target="_blank" style="text-decoration: none;">
+          <button class="btn" style="
+            margin-top: 1.2em;
+            background: linear-gradient(90deg, #38f9d7 0%, #43e97b 100%);
+            color: white;
+            font-weight: 600;
+            padding: 0.9em 1.6em;
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(38, 249, 215, 0.3);
+            transition: transform 0.2s;
+            width: 100%;
+            max-width: 280px;
+          " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            View Research Site <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 0.4em;"></i>
+          </button>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="steps" data-aos="fade-up">
   <h2>Project Steps</h2>
-  <ol class="storyboard">
-    <li class="story-item"><img src="img/step1.jpg" alt=""><span>Discover – empathise with users</span></li>
-    <li class="story-item"><img src="img/step2.jpg" alt=""><span>Define – synthesise pain-points</span></li>
-    <li class="story-item"><img src="img/step3.jpg" alt=""><span>Ideate – prototype concepts</span></li>
-    <li class="story-item"><img src="img/step4.jpg" alt=""><span>Test – iterate with users</span></li>
-    <li class="story-item"><img src="img/step5.jpg" alt=""><span>Deliver – final toolkit</span></li>
-  </ol>
+  <div class="timeline-container">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Week 1 (1–7 Aug)</div>
+      <div class="timeline-title">Research & Immersion</div>
+      <p class="timeline-desc">Interviews with deaf & blind visitors + community experts to map accessibility needs.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Week 2 (8–14 Aug)</div>
+      <div class="timeline-title">Co-design Workshop</div>
+      <p class="timeline-desc">Half-day session with participants to prototype tactile, visual and multi-sensory tour elements.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Week 3 (15–21 Aug)</div>
+      <div class="timeline-title">Prototype & Test</div>
+      <p class="timeline-desc">Create low-fidelity tactile maps, Braille/QR cards & sign-language videos; run on-site test tours.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Week 4 (22–31 Aug)</div>
+      <div class="timeline-title">Refine & Launch</div>
+      <p class="timeline-desc">Incorporate feedback, produce final materials, train Guides, soft-launch inclusive tours.</p>
+    </div>
+  </div>
 </section>
 
 <section id="prototypes" data-aos="fade-up">
@@ -251,19 +526,37 @@
 </section>
 
 <section id="team" data-aos="fade-up">
-  <h2>Team</h2>
+  <h2>Team 6 Members</h2>
+  <div class="card" data-aos="zoom-in">
+    <h3 style="grid-column:1/-1;text-align:center">The Whole Team</h3>
+    <img src="img/groupphoto.jpg" alt="Team 6 Group Photo" style="width:100%;border-radius:16px;box-shadow:var(--clr-shadow);">
+    <p style="text-align:center;margin-top:.5em;font-weight:600">Left → Right: Howard, Farm, Yu Cheng, Putri, Xun Yin, Dan</p>
+  </div>
+  <br>
   <div class="grid grid-3 team-grid">
     <div class="card">
-      <img src="img/team-a.jpg" alt="Anna"/>
-      <h4>Anna Lee</h4><small>Lead UX / Accessibility Researcher</small>
+      <img src="img/member-cheng.jpg" alt="Tee Yu Cheng"/>
+      <h4>Tee Yu Cheng</h4><small>Project Website Developer, Video Content Creator</small>
     </div>
     <div class="card">
-      <img src="img/team-a.jpg" alt="Joe"/>
-      <h4>Joe Mac</h4><small>Industrial Designer</small>
+      <img src="img/member-farm.jpg" alt="Farm Yong Wei"/>
+      <h4>Farm Yong Wei</h4><small></small>
     </div>
     <div class="card">
-      <img src="img/team-a.jpg" alt="Chrissy"/>
-      <h4>Chrissy Sanachan</h4><small>Community Liaison, Friends of Glasgow Botanic Gardens</small>
+      <img src="img/member-dan.jpg" alt="Dan Lai Kai Yi"/>
+      <h4>Dan Lai Kai Yi</h4><small></small>
+    </div>
+    <div class="card">
+      <img src="img/member-putri.jpg" alt="Putri Nadrah Binte Jefreydin"/>
+      <h4>Putri Nadrah Binte Jefreydin</h4><small></small>
+    </div>
+    <div class="card">
+      <img src="img/member-howard.jpg" alt="Howard Yeo Hong Ding"/>
+      <h4>Howard Yeo Hong Ding</h4><small></small>
+    </div>
+    <div class="card">
+      <img src="img/member-xun-yin.jpg" alt="Chiam Xun Yin"/>
+      <h4>Chiam Xun Yin</h4><small></small>
     </div>
   </div>
 </section>
@@ -288,6 +581,41 @@
   "></div>
   <article id="modal-content" style="z-index:1;position:relative;"></article>
 </dialog>
+
+<!-- Move theme toggle button to bottom right and add a "move to top" button -->
+<button id="theme-toggle" style="
+  position:fixed;
+  bottom:1.5rem;
+  right:1.5rem;
+  z-index:999;
+  background:var(--clr-primary);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.10);
+"><i class="fa-solid fa-moon"></i></button>
+
+<button id="to-top-btn" style="
+  position:fixed;
+  bottom:5.5rem;
+  right:1.5rem;
+  z-index:998;
+  background:var(--clr-accent);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.10);
+  display:none;
+  font-size:1.3em;
+" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -380,6 +708,31 @@ toggle.onclick = () => {
 const scrollToSection=id=>document.getElementById(id).scrollIntoView({behavior:'smooth'});
 AOS.init({duration:800,once:true});
 renderPrototypes();
+
+document.getElementById('nav-toggle').onclick = function() {
+  document.getElementById('main-nav').classList.toggle('open');
+};
+
+document.querySelectorAll('#main-nav ul li a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 800) {
+      document.getElementById('main-nav').classList.remove('open');
+    }
+  });
+});
+
+const toTopBtn = document.getElementById('to-top-btn');
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    toTopBtn.style.display = "block";
+  } else {
+    toTopBtn.style.display = "none";
+  }
+};
+
+toTopBtn.onclick = function() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+};
 </script>
 </body>
 </html>
