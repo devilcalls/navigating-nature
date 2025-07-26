@@ -34,6 +34,11 @@
     --clr-shadow: 0 4px 18px rgba(0,0,0,.45);
   }
 
+  /* Smooth scroll for the whole page */
+  html{
+    scroll-behavior: smooth;
+  }
+
   body {
     margin:0;
     font-family:'Poppins',sans-serif;
@@ -236,6 +241,20 @@
     overflow: hidden;
   }
   */
+
+  .modal-card {
+    background: var(--clr-bg-alt);
+    color: var(--clr-text);
+    border: 1px solid rgba(0,0,0,.07);
+    border-radius: 22px;
+    box-shadow: var(--clr-shadow);
+    padding: 2.5rem 1.5rem 2rem;
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    animation: modalPop .4s cubic-bezier(.5,1.5,.5,1);
+  }
 
   /* Navigation Styles */
   #main-nav {
@@ -552,7 +571,7 @@
 </section>
 
 <section id="prototypes" data-aos="fade-up">
-  <h2>Prototypes & Sketches</h2>
+  <h2>Prototypes & Solutions</h2>
   <div id="proto-grid" class="grid grid-3"></div>
 </section>
 
@@ -575,7 +594,7 @@
     </div>
     <div class="card">
       <img src="img/member-dan.jpg" alt="Dan Lai Kai Yi"/>
-      <h4>Dan Lai Kai Yi</h4><small></small>
+      <h4>Dan Lai Kai Yi</h4><small>Interactive Systems Developer & Experience Designer</small>
     </div>
     <div class="card">
       <img src="img/member-putri.jpg" alt="Putri Nadrah Binte Jefreydin"/>
@@ -651,27 +670,42 @@
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script>
+let modalOpen = false;
+let modalId = '';
 const prototypes = [
   {
     id:"brailleBoard",
-    name:"Information Board with Braille & QR",
-    img:"img/proto.jpg",
-    story:"A waist-high board with embossed Braille labels, tactile icons and a large-print QR code that launches a microsite with BSL/ASL videos and 3-minute audio description of each plant.",
-    sketch:"<img src='img/sketch.jpg' style='width:100%;border-radius:8px;margin-top:1em'>"
+    name:"Information Board with Braille & QR codes",
+    img:"img/proto1.png",
+    story:"A sturdy, weather-resistant lectern with an angled plaque. It combines large print, Braille, and a QR code into a single, cohesive unit. After scanning the QR code, The screen shows a video with a sign language interpreter, clear captions, and simple buttons to access an audio description or read the full text.",
+    sketches:[
+        "img/proto1.png",
+        "img/proto1.2.png",
+    ],
+    fullUrl:"https://your-full-prototype-page.com/brailleBoard"
   },
   {
     id:"textureBook",
     name:"Textured Guidebook",
-    img:"img/proto.jpg",
-    story:"Pocket-sized concertina booklet: each spread contains a real pressed flower, embossed outline and texture swatch (velvet, bark, serrated edge). Free for disabled visitors; tourists can buy a keepsake edition.",
-    sketch:"<img src='img/sketch.jpg' style='width:100%;border-radius:8px;margin-top:1em'>"
+    img:"img/proto2.png",
+    story:"It's designed to be visually appealing for all visitors and tactilely engaging for those with visual impairments. The use of a famous landmark like the Kibble Palace makes it an attractive souvenir.",
+    sketches:[
+        "img/proto2.png",
+        "img/proto2.2.png",
+        "img/proto2.3.png"
+    ],
+    fullUrl:"https://your-full-prototype-page.com/textureBook"
   },
   {
     id:"videoSite",
-    name:"Website with BSL/ASL & QR",
-    img:"img/proto.jpg",
-    story:"Responsive site offering seasonal highlights in sign-language, audio-only navigation, high-contrast toggle and offline mode via cached QR codes.",
-    sketch:"<img src='img/sketch.jpg' style='width:100%;border-radius:8px;margin-top:1em'>"
+    name:"Website with BSL/ASL & QR Codes",
+    img:"img/proto3.png",
+    story:"It's designed for visitors who are deaf or hard of hearing. The page features a central video player with clear options to watch the tour with either British Sign Language (BSL) or American Sign Language (ASL) interpreters. A full text transcript is also provided below the video for added accessibility.",
+    sketches:[
+        "img/proto3.png",
+        "img/proto3.2.png",
+    ],
+    fullUrl:"https://your-full-prototype-page.com/videoSite"
   }
 ];
 
@@ -690,36 +724,82 @@ function renderPrototypes(){
   });
 }
 
-function openModal(id){
-  const p = prototypes.find(el=>el.id===id);
-  const m=document.getElementById('modal-content');
-  m.innerHTML=`
+function openModal(id) {
+  modalOpen = true;
+  modalId = id;
+  const p = prototypes.find(el => el.id === id);
+  const m = document.getElementById('modal-content');
+
+  /* 1️⃣ create the sketch row as DOM, NOT a string */
+  const sketchRow = document.createElement('div');
+  sketchRow.style.cssText =
+    'display:flex;gap:.5em;justify-content:center;flex-wrap:wrap;margin:.8em 0';
+  p.sketches.forEach((sk, idx) => {
+    const img = document.createElement('img');
+    img.src = sk;
+    img.alt = `Sketch ${idx + 1}`;
+    img.style.cssText = 'width:28%;border-radius:8px;cursor:pointer';
+    img.onclick = () => {
+      modal.close();                       // hide dialog
+      document.querySelector('.lightbox-overlay img').src = sk;
+      document.querySelector('.lightbox-overlay').classList.add('active');
+    };
+    sketchRow.appendChild(img);
+  });
+
+  /* 2️⃣ build the rest of the modal */
+  m.innerHTML = `
     <div style="
       background: var(--clr-bg-alt);
-      /* Removed glass blur and transparency */
       border: 1px solid rgba(0,0,0,0.07);
       border-radius: 22px;
       box-shadow: var(--clr-shadow);
-      padding: 2.5rem 2rem 2rem 2rem;
-      max-width: 480px;
+      padding: 2.5rem 1.5rem 2rem;
+      max-width: 550px;
       margin: 0 auto;
       text-align: center;
       position: relative;
-      animation: modalPop .4s cubic-bezier(.5,1.5,.5,1) 1;
-    ">
-      <button onclick="modal.close()" aria-label="Close" style="
-        position:absolute;top:18px;right:18px;background:var(--clr-primary);color:#fff;border:none;border-radius:50%;width:38px;height:38px;box-shadow:0 2px 8px rgba(0,0,0,.10);font-size:1.2em;cursor:pointer;z-index:2;
-      "><i class="fa-solid fa-xmark"></i></button>
-      <img src="${p.img}" alt="${p.name}" style="width:120px;height:120px;object-fit:cover;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.10);margin-bottom:1.5em;border:4px solid var(--clr-primary)">
-      <h2 style="font-size:2rem;font-weight:700;color:var(--clr-primary);margin-bottom:.5em">${p.name}</h2>
-      <p style="font-size:1.1em;color:var(--clr-text);margin-bottom:1.5em">${p.story}</p>
-      <div style="margin-bottom:1em">${p.sketch}</div>
+      animation: modalPop .4s cubic-bezier(.5,1.5,.5,1);
+    "
+    class="modal-card">
+      <button onclick="closeModal()" aria-label="Close" style="
+        position:absolute;top:14px;right:14px;background:var(--clr-primary);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:1.2em;cursor:pointer;z-index:2;">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <img src="${p.img}" alt="${p.name}" style="width:150px;height:150px;object-fit:cover;border-radius:16px;margin-bottom:1em;border:4px solid var(--clr-primary)">
+      <h2 style="font-size:1.8rem;font-weight:700;color:var(--clr-primary);margin:.2em 0 .6em">${p.name}</h2>
+      <p style="font-size:1em;line-height:1.5;margin-bottom:.8em">${p.story}</p>
+
+      <!-- sketches row -->
+      <div id="sketchSlot"></div>
+
+      <!-- external link button -->
+      ${p.fullUrl ? `
+        <a href="${p.fullUrl}" target="_blank" style="text-decoration:none">
+          <button class="btn" style="
+            margin-top:1.2em;
+            background:linear-gradient(90deg,#38f9d7 0%,#43e97b 100%);
+            color:#fff;font-weight:600;padding:.8em 1.6em;border-radius:30px;">
+            View full details <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left:.4em"></i>
+          </button>
+        </a>` : ''}
     </div>
   `;
+
+  /* 3️⃣ insert the sketch row */
+  m.querySelector('#sketchSlot').appendChild(sketchRow);
   modal.showModal();
 }
 
-document.getElementById('modal-overlay').onclick = () => modal.close();
+function closeModal() {
+  modalOpen = false;
+  modalId = '';
+  document.getElementById('modal').close();
+  document.querySelector('.lightbox-overlay').classList.remove('active');
+}
+
+document.getElementById('modal-overlay').onclick = () => closeModal();
 document.querySelector('#modal > button.btn')?.remove();
 const style = document.createElement('style');
 style.innerHTML = `@keyframes modalPop { 0% { transform:scale(.8); opacity:0; } 100% { transform:scale(1); opacity:1; } }`;
@@ -784,7 +864,12 @@ toTopBtn.onclick = function() {
   });
 
   /* 3. close on overlay click or image click */
-  overlay.addEventListener('click',()=>overlay.classList.remove('active'));
+  overlay.addEventListener('click',()=>{
+    if (modalOpen && modalId !== '') {
+      openModal(modalId);
+    }
+    overlay.classList.remove('active')
+  });
 })();
 </script>
 </body>
