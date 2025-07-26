@@ -366,7 +366,7 @@
     top:0;
     height:100%;
     width:2px;
-    background:var(--line);
+    background:var(--clr-text);
   }
   .timeline-dot{
     position:absolute;
@@ -375,26 +375,31 @@
     width:16px;
     height:16px;
     border-radius:50%;
-    background:var(--dot);
     border:4px solid #fff;
-    box-shadow:0 0 0 3px var(--primary);
+    background: var(--clr-primary);
+    border-color: var(--clr-bg-alt);
+    box-shadow: 0 0 0 3px var(--clr-primary);
   }
   .timeline-date{
     font-weight:600;
     font-size:.9rem;
-    color:var(--primary);
     margin-bottom:4px;
   }
   .timeline-title{
     font-weight:600;
     font-size:1.1rem;
     margin:0 0 6px;
+    color: var(--clr-primary);
   }
   .timeline-desc{
     font-size:.95rem;
     line-height:1.4;
     color:#555;
     margin:0;
+  }
+  .timeline-date,
+  .timeline-desc {
+    color: var(--clr-text);
   }
   .timeline-item:last-child::before{
     height:0;          /* no overshoot line after the final dot */
