@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating Nature - Redirecting...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --clr-primary: #2c5530;
+            --clr-secondary: #8fbc8f;
+            --clr-accent: #f4a460;
+            --clr-tertiary: #5d8a66;
+            --clr-light: #f8f9fa;
+            --clr-glass: rgba(255, 255, 255, 0.15);
+            --clr-glass-border: rgba(255, 255, 255, 0.25);
+            --clr-glass-dark: rgba(44, 85, 48, 0.2);
+            --font-primary: 'Inter', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: linear-gradient(135deg, 
+                #2d5016 0%,     /* Deep forest green */
+                #4a7c59 25%,    /* Forest green */
+                #8fbc8f 50%,    /* Dark sea green */
+                #a0c4a9 75%,    /* Light green */
+                #b8d4be 100%    /* Pale green */
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 12s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 0%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Enhanced animated background elements */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(139, 188, 143, 0.3) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(160, 196, 169, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(45, 80, 22, 0.4) 0%, transparent 70%),
+                radial-gradient(circle at 60% 70%, rgba(184, 212, 190, 0.15) 0%, transparent 50%);
+            animation: float 25s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(45deg, transparent 30%, rgba(139, 188, 143, 0.1) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 40%, rgba(45, 80, 22, 0.05) 60%, transparent 80%);
+            animation: shimmer 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            25% { transform: translateY(-15px) rotate(1deg) scale(1.02); }
+            50% { transform: translateY(5px) rotate(-0.5deg) scale(0.98); }
+            75% { transform: translateY(-8px) rotate(0.8deg) scale(1.01); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; transform: translateX(-100px); }
+            50% { opacity: 0.7; transform: translateX(100px); }
+        }
+
+        .redirect-container {
+            text-align: center;
+            background: var(--clr-glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--clr-glass-border);
+            border-radius: calc(var(--border-radius) + 4px);
+            padding: 3rem 2rem;
+            box-shadow: 
+                0 8px 32px rgba(45, 80, 22, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            margin: 2rem;
+            position: relative;
+            animation: slideUp 1.2s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: bounce 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(45, 80, 22, 0.3));
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-12px) rotate(-2deg); }
+            45% { transform: translateY(-6px) rotate(1deg); }
+            65% { transform: translateY(-3px) rotate(-1deg); }
+        }
+
+        .title {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-shadow: 
+                0 2px 4px rgba(45, 80, 22, 0.5),
+                0 4px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(45, 80, 22, 0.3);
+        }
+
+        .loading-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: inset 0 2px 4px rgba(45, 80, 22, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, 
+                var(--clr-secondary) 0%, 
+                var(--clr-tertiary) 30%,
+                #7fb069 60%,
+                var(--clr-accent) 100%
+            );
+            border-radius: 4px;
+            animation: fillProgress 5s ease-out forwards;
+            width: 0%;
+            box-shadow: 0 0 10px rgba(139, 188, 143, 0.5);
+        }
+
+        @keyframes fillProgress {
+            to { width: 100%; }
+        }
+
+        .redirect-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: linear-gradient(135deg, 
+                var(--clr-primary) 0%, 
+                var(--clr-tertiary) 50%,
+                var(--clr-secondary) 100%
+            );
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 
+                0 4px 15px rgba(44, 85, 48, 0.4),
+                0 2px 5px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .redirect-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent
+            );
+            transition: left 0.6s ease;
+        }
+
+        .redirect-button:hover::before {
+            left: 100%;
+        }
+
+        .redirect-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 8px 25px rgba(44, 85, 48, 0.5),
+                0 4px 10px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .redirect-button:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .countdown {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 1.2rem;
+            font-weight: 400;
+            text-shadow: 0 1px 2px rgba(45, 80, 22, 0.3);
+        }
+
+        .countdown-number {
+            font-weight: 700;
+            color: #f4d03f;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(244, 208, 63, 0.3);
+        }
+
+        /* Enhanced decorative elements */
+        .redirect-container::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+                var(--clr-primary) 0%,
+                var(--clr-secondary) 25%,
+                var(--clr-tertiary) 50%,
+                var(--clr-accent) 75%,
+                var(--clr-primary) 100%
+            );
+            border-radius: calc(var(--border-radius) + 6px);
+            z-index: -1;
+            opacity: 0.8;
+            animation: borderGlow 4s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { 
+                opacity: 0.6; 
+                background-position: 0% 50%;
+            }
+            50% { 
+                opacity: 1; 
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .redirect-container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .redirect-button {
+                padding: 0.9rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .redirect-container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .redirect-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Accessibility preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            body {
+                background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
+            }
+        }
+
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            .redirect-container {
+                border: 3px solid white;
+                background: rgba(44, 85, 48, 0.95);
+            }
+            
+            .title {
+                color: white;
+                -webkit-text-fill-color: white;
+            }
+            
+            .redirect-button {
+                border: 2px solid white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="logo">🌿</div>
+        <h1 class="title">Navigating Nature</h1>
+        <p class="subtitle">Accessible Tours for Glasgow Botanic Gardens</p>
+        
+        <div class="loading-text">
+            <i class="fas fa-compass fa-spin"></i>
+            Redirecting you to our main site...
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        
+        <a href="main/index.html" class="redirect-button" id="redirectBtn">
+            <i class="fas fa-arrow-right"></i>
+            Visit Main Site
+        </a>
+        
+        <p class="countdown">
+            Auto-redirect in <span class="countdown-number" id="countdown">5</span> seconds
+        </p>
+    </div>
+
+    <script>
+        // Auto-redirect functionality
+        let timeLeft = 5;
+        const countdownElement = document.getElementById('countdown');
+        const redirectBtn = document.getElementById('redirectBtn');
+
+        // Update countdown every second
+        const countdownTimer = setInterval(() => {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdownTimer);
+                window.location.href = 'main/index.html';
+            }
+        }, 1000);
+
+        // Manual redirect button
+        redirectBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            clearInterval(countdownTimer);
+            
+            // Add loading state
+            redirectBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+            redirectBtn.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                window.location.href = 'main/index.html';
+            }, 500);
+        });
+
+        // Preload the main page for faster transition
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = 'main/index.html';
+        document.head.appendChild(link);
+
+        // Enhanced accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (document.activeElement === redirectBtn) {
+                    redirectBtn.click();
+                }
+            }
+        });
+
+        // Respect user's motion preferences
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+        }
+    </script>
+</body>
+</html>
