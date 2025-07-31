@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textured Guidebook - Glasgow Botanic Gardens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('../main/img/hero.jpg'),
+                linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            opacity: 0.9;
+        }
+
+        /* ========================================
+           BACK TO HOME BUTTON
+        ======================================== */
+        .back-to-home {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(44, 85, 48, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-to-home:hover {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c5530;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* ========================================
+           MAIN LAYOUT
+        ======================================== */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header {
+            background: rgba(155, 89, 182, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header h1, .header p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 400;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+        ======================================== */
+        h2 {
+            color: #9b59b6;
+            font-size: 2rem;
+            margin: 2.5rem 0 1.5rem 0;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 0.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #9b59b6, #e74c3c);
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* ========================================
+           CONTENT BOXES
+        ======================================== */
+        .intro-box {
+            background: rgba(155, 89, 182, 0.1);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #9b59b6;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(155, 89, 182, 0.2);
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.1);
+        }
+
+        .innovation-highlight {
+            background: rgba(46, 204, 113, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            border-left: 4px solid #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.1);
+        }
+
+        .features-list {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .features-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #9b59b6;
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: rgba(155, 89, 182, 0.1);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: -2px;
+        }
+
+        .use-case {
+            background: rgba(240, 248, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
+        }
+
+        /* ========================================
+           FEATURE GRID
+        ======================================== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(155, 89, 182, 0.1);
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .feature-card h4 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        /* ========================================
+           SUSTAINABILITY MODEL
+        ======================================== */
+        .sustainability-model {
+            background: rgba(241, 196, 15, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #f1c40f;
+            border: 1px solid rgba(241, 196, 15, 0.2);
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.1);
+        }
+
+        .revenue-streams {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .revenue-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(241, 196, 15, 0.2);
+            text-align: center;
+        }
+
+        .revenue-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .revenue-item h4 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* ========================================
+           PROTOTYPE MOCKUP
+        ======================================== */
+        .prototype-section {
+            margin: 3rem 0;
+        }
+
+        .mockup-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(155, 89, 182, 0.2);
+            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.1);
+        }
+
+        .prototype-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            max-height: 700px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+
+        .prototype-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fa;
+            border: 1px solid rgba(155, 89, 182, 0.1);
+        }
+
+        .prototype-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            object-position: center;
+            border-bottom: 2px solid rgba(155, 89, 182, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .prototype-slide:hover .prototype-image {
+            transform: scale(1.02);
+        }
+
+        .prototype-caption {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 250px;
+        }
+
+        .prototype-caption h4 {
+            color: #9b59b6;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-align: center;
+            border-bottom: 2px solid rgba(155, 89, 182, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .prototype-caption p {
+            text-align: center;
+            margin: 1rem 0;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .tactile-element {
+            background: rgba(155, 89, 182, 0.1);
+            border: 2px dashed #9b59b6;
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+            position: relative;
+        }
+
+        .tactile-element::before {
+            content: "✋";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: rgba(155, 89, 182, 0.9);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .scent-panel {
+            background: linear-gradient(135deg, rgba(241, 196, 15, 0.2), rgba(243, 156, 18, 0.2));
+            border: 2px solid #f1c40f;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+            color: #d68910;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scent-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            background: rgba(155, 89, 182, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: rgba(231, 76, 60, 0.9);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(155, 89, 182, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .indicator.active {
+            background: rgba(155, 89, 182, 0.8);
+            transform: scale(1.2);
+            border-color: rgba(155, 89, 182, 0.4);
+        }
+
+        .indicator:hover {
+            background: rgba(155, 89, 182, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* ========================================
+           IMAGE ZOOM MODAL
+        ======================================== */
+        .zoom-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .zoom-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .zoom-content {
+            position: relative;
+            max-width: 95%;
+            max-height: 95%;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { 
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to { 
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .zoom-image {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            background: #f8f9fa;
+        }
+
+        .zoom-caption {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid rgba(155, 89, 182, 0.2);
+        }
+
+        .zoom-caption h4 {
+            color: #9b59b6;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .zoom-caption p {
+            margin: 0;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .close-zoom {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .close-zoom:hover {
+            background: rgba(231, 76, 60, 1);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+        }
+
+        .zoom-controls {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .zoom-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Make prototype images clickable */
+        .prototype-image {
+            cursor: zoom-in;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .prototype-image:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Mobile adjustments for prototype carousel */
+        @media (max-width: 768px) {
+            .prototype-carousel {
+                max-height: 600px;
+            }
+            
+            .prototype-image {
+                height: 300px;
+            }
+            
+            .prototype-caption {
+                padding: 1.5rem;
+                min-height: 200px;
+            }
+            
+            .prototype-caption h4 {
+                font-size: 1.2rem;
+            }
+            
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .prototype-carousel {
+                max-height: 500px;
+            }
+            
+            .prototype-image {
+                height: 250px;
+            }
+            
+            .prototype-caption {
+                padding: 1rem;
+                min-height: 180px;
+            }
+            
+            .prototype-caption h4 {
+                font-size: 1.1rem;
+            }
+            
+            .nav-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .tactile-element, .scent-panel {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+        @media (max-width: 768px) {
+            body::before {
+                background-attachment: scroll;
+            }
+            
+            .container {
+                margin: 1rem;
+                border-radius: 15px;
+                animation: none;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .header {
+                padding: 2rem 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .guidebook-mockup {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 0.5rem;
+                border-radius: 12px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .back-to-home span {
+                display: none;
+            }
+
+            .back-to-home {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                padding: 0;
+                justify-content: center;
+            }
+        }
+
+        /* ========================================
+           ACCESSIBILITY & PRINT
+        ======================================== */
+        @media (prefers-reduced-motion: reduce) {
+            .container {
+                animation: none;
+            }
+            
+            .feature-card {
+                transition: none;
+            }
+            
+            .back-to-home {
+                transition: none;
+            }
+        }
+
+        @media print {
+            .back-to-home {
+                display: none;
+            }
+            
+            body::before {
+                display: none;
+            }
+            
+            .container {
+                background: white;
+                backdrop-filter: none;
+                box-shadow: none;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <a href="https://ninguest.github.io/navigating-nature/main/" class="back-to-home" title="Back to Main Website">
+        <span class="icon">🏠</span>
+        <span>Back to Home</span>
+    </a>
+
+    <div class="container">
+        <header class="header">
+            <h1>The Textured Guidebook</h1>
+            <p>Portable Sensory-Rich Companion for Glasgow Botanic Gardens</p>
+        </header>
+
+        <div class="content">
+            <div class="intro-box">
+                <strong>Project Overview:</strong> The Textured Guidebook is a revolutionary portable, multi-sensory companion designed for self-guided tours of Glasgow Botanic Gardens. This innovative publication combines tactile illustrations, integrated Braille, and scratch-and-scent technology to create an inclusive experience for all visitors.
+            </div>
+
+            <div class="innovation-highlight">
+                <h3>🌟 Innovative Approach</h3>
+                <p>Unlike traditional garden maps or guides, the Textured Guidebook represents a completely new concept for Glasgow Botanic Gardens. This groundbreaking accessibility tool doesn't replace existing materials—it creates an entirely new category of visitor experience that has never been offered before at the gardens.</p>
+            </div>
+
+            <h2>Design Purpose</h2>
+            <p>More than just a map, the Textured Guidebook serves as a beautifully designed, tactile companion that allows visitors to experience the shapes, textures, and even scents of the garden's collection. It bridges the gap between visual observation and multi-sensory exploration, ensuring that every visitor can form a deep, personal connection with Glasgow's botanical heritage.</p>
+
+            <p>This innovative guide transforms the traditional garden visit into an immersive journey where visitors can feel the intricate patterns of a fern frond, understand the architectural beauty of the Kibble Palace through raised illustrations, and experience the distinctive scents of different garden zones—all while learning about the garden's rich 200-year history.</p>
+
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: #e74c3c;">✋</div>
+                    <h4>Tactile Illustrations</h4>
+                    <p>Raised-line drawings of key plants and structures allow visitors to feel the shape of leaves, the texture of bark, the layout of garden zones, and architectural details of iconic buildings like the Kibble Palace.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: #3498db;">⠃</div>
+                    <h4>Integrated Braille</h4>
+                    <p>Complete descriptions of garden zones, plant histories, and featured specimens are provided in Grade 2 Braille alongside standard printed text, ensuring equal access to information.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: #f39c12;">👃</div>
+                    <h4>Scratch and Scent Panels</h4>
+                    <p>Specially treated panels release authentic scents when scratched—pine in the conifer section, roses in the rose garden, herbs in the medicinal plant area—adding an olfactory dimension to the experience.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: #27ae60;">💰</div>
+                    <h4>Sustainable Revenue Model</h4>
+                    <p>Free for visitors with visual or hearing impairments, while available for purchase as a premium souvenir for all visitors, creating a self-sustaining accessibility program.</p>
+                </div>
+            </div>
+
+            <h2>Prototype Design Concept</h2>
+            <div class="prototype-section">
+                <div class="mockup-container">
+                    <h3>Sample Preview (Just a prototype)</h3>
+                    <div class="prototype-carousel">
+                        <div class="carousel-track">
+                            <div class="prototype-slide">
+                                <img src="../main/img/proto2.png" alt="Textured Guidebook Cover" class="prototype-image">
+                                <div class="prototype-caption">
+                                    <h4>Textured Guidebook Cover</h4>
+                                    <p>
+                                        Features the iconic Kibble Palace with raised architectural details and a tactile map of the gardens, inviting exploration through touch.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="prototype-slide">
+                                <img src="../main/img/proto2.2.png" alt="Example Page: GIANT OF THE ANDES" class="prototype-image">
+                                <div class="prototype-caption">
+                                    <h4>Example Page: GIANT OF THE ANDES</h4>
+                                    <p>This is a beautifully designed two-page spread from "A Sensory Tour of Glasgow Botanic Gardens", a textured guidebook created to be accessible for visitors with visual impairments.</p>
+                                </div>
+                            </div>
+
+                            <div class="prototype-slide">
+                                <img src="../main/img/guidebook0.png" alt="The Kibble Palace: History and Architecture" class="prototype-image">
+                                <div class="prototype-caption">
+                                    <h4>The Kibble Palace: History and Architecture</h4>
+                                    <p>
+                                        Brings the iconic glasshouse to life through touch. A visitor can read its history in large print or Braille and then feel the intricate, raised patterns of its famous wrought-iron and glass structure.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="prototype-slide">
+                                <img src="../main/img/guidebook1.png" alt="The Rose Collection: Blooms and History" class="prototype-image">
+                                <div class="prototype-caption">
+                                    <h4>The Rose Collection: Blooms and History</h4>
+                                    <p>
+                                        Focuses on the sights and smells of the rose garden. It describes the seasonal blooms and allows a visitor to feel the soft, velvety texture of a rose's petals, then experience its classic fragrance with a "scratch and scent" panel.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="prototype-slide">
+                                <img src="../main/img/guidebook2.png" alt="The Medicinal Garden: Traditional Uses" class="prototype-image">
+                                <div class="prototype-caption">
+                                    <h4>The Medicinal Garden: Traditional Uses</h4>
+                                    <p>
+                                        Explores the world of medicinal plants like lavender. A visitor can learn about its traditional uses and then interact with the page by touching the raised lavender stalks and releasing their calming aroma from the "scratch and scent" area.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="prototype-slide">
+                                <img src="../main/img/guidebook3.png" alt="Native Woodlands: Ecology and Conservation" class="prototype-image">
+                                <div class="prototype-caption">
+                                    <h4>Native Woodlands: Ecology and Conservation</h4>
+                                    <p>
+                                        Connects visitors to the local woodland ecosystem. It tells the conservation story of native plants and features a rich tactile landscape where one can feel the rough texture of bark, the soft surface of moss, and the delicate shape of a bluebell flower.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-nav">
+                            <button class="nav-btn prev" aria-label="Previous prototype">‹</button>
+                            <button class="nav-btn next" aria-label="Next prototype">›</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Add carousel indicators -->
+                    <div class="carousel-indicators">
+                        <div class="indicator active"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                        <div class="indicator"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Financial Sustainability Model</h2>
+            <div class="sustainability-model">
+                <h3>Dual-Purpose Design</h3>
+                <p>The Textured Guidebook operates on an innovative sustainability model that ensures long-term accessibility while generating revenue to support the program:</p>
+                
+                <div class="revenue-streams">
+                    <div class="revenue-item">
+                        <span class="icon">♿</span>
+                        <h4>Free Access</h4>
+                        <p>Provided at no cost to visitors who are deaf or blind, ensuring accessibility is never limited by financial barriers.</p>
+                    </div>
+
+                    <div class="revenue-item">
+                        <span class="icon">🎁</span>
+                        <h4>Premium Souvenir</h4>
+                        <p>Available for purchase as a unique, high-quality memento that offers a distinctive sensory experience of Glasgow's gardens.</p>
+                    </div>
+
+                    <div class="revenue-item">
+                        <span class="icon">🔄</span>
+                        <h4>Self-Sustaining</h4>
+                        <p>Revenue from sales funds production, updates, and expansion of the accessibility program across the gardens.</p>
+                    </div>
+
+                    <div class="revenue-item">
+                        <span class="icon">🌍</span>
+                        <h4>Educational Value</h4>
+                        <p>Appeals to educators, families, and botanical enthusiasts as an innovative learning tool that goes beyond traditional guides.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Technical Specifications</h2>
+            <table class="spec-table">
+                <tr>
+                    <th>Component</th>
+                    <th>Specification</th>
+                </tr>
+                <tr>
+                    <td>Size</td>
+                    <td>A4 format (210 × 297 mm) for comfortable handling</td>
+                </tr>
+                <tr>
+                    <td>Pages</td>
+                    <td>32-48 pages covering all major garden zones</td>
+                </tr>
+                <tr>
+                    <td>Tactile Elements</td>
+                    <td>UV-raised printing for durable tactile illustrations</td>
+                </tr>
+                <tr>
+                    <td>Braille</td>
+                    <td>Grade 2 (uncontracted) professionally translated</td>
+                </tr>
+                <tr>
+                    <td>Scent Panels</td>
+                    <td>Microencapsulated fragrances, scratch-activated</td>
+                </tr>
+                <tr>
+                    <td>Paper</td>
+                    <td>Heavy-weight, tactile-friendly stock (200gsm+)</td>
+                </tr>
+                <tr>
+                    <td>Binding</td>
+                    <td>Perfect bound with reinforced spine for durability</td>
+                </tr>
+                <tr>
+                    <td>Languages</td>
+                    <td>English with selected content in Gaelic</td>
+                </tr>
+            </table>
+
+            <h2>User Experience Journey</h2>
+            <div class="use-case">
+                <h3>Following the Orchid House Route</h3>
+                <p><strong>Scenario:</strong> A visitor with visual impairment follows the recommended route to the orchid house using the Textured Guidebook.</p>
+                
+                <p><strong>Navigation:</strong> Using the tactile map, they locate their current position and trace the path to the orchid house, feeling raised pathways and landmark indicators.</p>
+                
+                <p><strong>Arrival:</strong> Upon reaching the orchid house, they open the relevant page to read detailed descriptions in Braille about the collection's history and significance.</p>
+                
+                <p><strong>Tactile Exploration:</strong> They run their fingers over raised illustrations showing the unique shapes and growth patterns of specific orchid varieties, understanding forms they cannot see or touch directly.</p>
+                
+                <p><strong>Scent Experience:</strong> Scratching the designated panel releases the delicate fragrance of orchid blooms, adding an olfactory dimension to their understanding.</p>
+                
+                <p><strong>Deep Connection:</strong> Through this multi-sensory approach, they develop a comprehensive understanding of the orchids that goes beyond what traditional visual-only materials could provide.</p>
+            </div>
+
+            <h2>Implementation Benefits</h2>
+            <div class="features-list">
+                <ul>
+                    <li><strong>Universal Design:</strong> Creates an inclusive experience that enhances visits for all users, not just those with disabilities</li>
+                    <li><strong>Educational Enhancement:</strong> Provides deeper botanical and historical context than traditional signage allows</li>
+                    <li><strong>Revenue Generation:</strong> Self-sustaining model supports ongoing accessibility improvements</li>
+                    <li><strong>Marketing Value:</strong> Unique offering that distinguishes Glasgow Botanic Gardens as an accessibility leader</li>
+                    <li><strong>Keepsake Appeal:</strong> Beautiful design makes it a cherished memento of the garden visit</li>
+                    <li><strong>Scalable Technology:</strong> Successful model can be adapted for other botanical gardens and museums</li>
+                </ul>
+            </div>
+
+            <h2>Vision for Glasgow Botanic Gardens</h2>
+            <p>The Textured Guidebook represents more than an accessibility tool—it embodies a new philosophy of inclusive design that enriches every visitor's experience. By providing this innovative companion, Glasgow Botanic Gardens would establish itself as a global leader in accessible tourism and inclusive design.</p>
+
+            <p>This groundbreaking approach honors the garden's 200-year commitment to education and community service while embracing cutting-edge accessibility technology. The guidebook ensures that the beauty, history, and scientific significance of Glasgow's botanical collection can be fully appreciated by visitors of all abilities, creating lasting memories and deep connections with nature.</p>
+
+            <p>Through the Textured Guidebook, every visitor—regardless of their sensory abilities—can embark on a rich, multi-dimensional journey through one of Scotland's most treasured botanical institutions.</p>
+        </div>
+    </div>
+
+    <!-- Zoom Modal -->
+    <div id="zoomModal" class="zoom-modal">
+        <div class="zoom-content">
+            <button class="close-zoom" id="closeZoom" aria-label="Close zoom">&times;</button>
+            <img id="zoomImage" class="zoom-image" src="" alt="">
+            <div class="zoom-caption">
+                <h4 id="zoomTitle"></h4>
+                <p id="zoomDescription"></p>
+            </div>
+            <div class="zoom-controls">
+                <button class="zoom-btn" id="prevZoom" aria-label="Previous image">‹</button>
+                <button class="zoom-btn" id="nextZoom" aria-label="Next image">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Prototype Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.prototype-slide');
+            const prevBtn = document.querySelector('.nav-btn.prev');
+            const nextBtn = document.querySelector('.nav-btn.next');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            
+            function updateCarousel() {
+                const translateX = -currentSlide * 100;
+                track.style.transform = `translateX(${translateX}%)`;
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            if (nextBtn && prevBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarousel();
+                });
+                
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateCarousel();
+                });
+                
+                // Add indicator click functionality
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        currentSlide = index;
+                        updateCarousel();
+                    });
+                });
+                
+                // Auto-advance carousel every 6 seconds
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarousel();
+                }, 6000);
+            }
+
+            // Image Zoom Functionality
+            const zoomModal = document.getElementById('zoomModal');
+            const zoomImage = document.getElementById('zoomImage');
+            const zoomTitle = document.getElementById('zoomTitle');
+            const zoomDescription = document.getElementById('zoomDescription');
+            const closeZoom = document.getElementById('closeZoom');
+            const prevZoom = document.getElementById('prevZoom');
+            const nextZoom = document.getElementById('nextZoom');
+            
+            let currentZoomIndex = 0;
+            
+            // Add click event to all prototype images
+            const prototypeImages = document.querySelectorAll('.prototype-image');
+            prototypeImages.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    openZoom(index);
+                });
+            });
+            
+            function openZoom(index) {
+                currentZoomIndex = index;
+                const slide = slides[index];
+                const img = slide.querySelector('.prototype-image');
+                const caption = slide.querySelector('.prototype-caption');
+                const title = caption.querySelector('h4').textContent;
+                const description = caption.querySelector('p').textContent;
+                
+                zoomImage.src = img.src;
+                zoomImage.alt = img.alt;
+                zoomTitle.textContent = title;
+                zoomDescription.textContent = description;
+                
+                zoomModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+            
+            function closeZoomModal() {
+                zoomModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+            
+            function showPrevZoom() {
+                currentZoomIndex = (currentZoomIndex - 1 + totalSlides) % totalSlides;
+                openZoom(currentZoomIndex);
+            }
+            
+            function showNextZoom() {
+                currentZoomIndex = (currentZoomIndex + 1) % totalSlides;
+                openZoom(currentZoomIndex);
+            }
+            
+            // Event listeners for zoom controls
+            closeZoom.addEventListener('click', closeZoomModal);
+            prevZoom.addEventListener('click', showPrevZoom);
+            nextZoom.addEventListener('click', showNextZoom);
+            
+            // Close modal when clicking outside the image
+            zoomModal.addEventListener('click', (e) => {
+                if (e.target === zoomModal) {
+                    closeZoomModal();
+                }
+            });
+            
+            // Keyboard navigation for zoom modal
+            document.addEventListener('keydown', (e) => {
+                if (zoomModal.classList.contains('active')) {
+                    switch(e.key) {
+                        case 'Escape':
+                            closeZoomModal();
+                            break;
+                        case 'ArrowLeft':
+                            showPrevZoom();
+                            break;
+                        case 'ArrowRight':
+                            showNextZoom();
+                            break;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

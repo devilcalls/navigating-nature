@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible Information Board - Glasgow Botanic Gardens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('../main//img/hero.jpg'),
+                linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            opacity: 0.9;
+        }
+
+        /* ========================================
+           BACK TO HOME BUTTON
+        ======================================== */
+        .back-to-home {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(44, 85, 48, 0.95);
+            backdrop-filter: blur(15px);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-to-home:hover {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c5530;
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* ========================================
+           MAIN LAYOUT
+        ======================================== */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header {
+            background: rgba(44, 85, 48, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header h1, .header p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 400;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+        ======================================== */
+        h2 {
+            color: #2c5530;
+            font-size: 2rem;
+            margin: 2.5rem 0 1.5rem 0;
+            border-bottom: 3px solid #2c5530;
+            padding-bottom: 0.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #2c5530, #4a7c59);
+            border-radius: 2px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        /* ========================================
+           CONTENT BOXES
+        ======================================== */
+        .intro-box {
+            background: rgba(232, 245, 232, 0.8);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #2c5530;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(44, 85, 48, 0.1);
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.1);
+        }
+
+        .current-board-intro {
+            background: rgba(52, 73, 94, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #34495e;
+            border: 1px solid rgba(52, 73, 94, 0.1);
+            box-shadow: 0 4px 15px rgba(52, 73, 94, 0.1);
+        }
+
+        .solution-bridge {
+            background: rgba(46, 204, 113, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            border-left: 4px solid #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.1);
+        }
+
+        .features-list {
+            background: rgba(248, 249, 250, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .features-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2c5530;
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: rgba(44, 85, 48, 0.1);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: -2px;
+        }
+
+        .use-case {
+            background: rgba(240, 248, 240, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid rgba(44, 85, 48, 0.1);
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.1);
+        }
+
+        .history-section {
+            background: rgba(250, 246, 240, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.1);
+        }
+
+        /* ========================================
+           CAROUSEL STYLES
+        ======================================== */
+        .image-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .boards-carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            max-height: 600px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .board-slide {
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .current-board-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        .image-caption {
+            background: rgba(44, 85, 48, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0 0 12px 12px;
+            margin-top: 0;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #34495e;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========================================
+           ACCESSIBILITY ISSUES SECTION
+        ======================================== */
+        .accessibility-issues {
+            margin: 3rem 0;
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .issue-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .issue-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .issue-card h4 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .issue-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .issue-card li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .issue-card li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* ========================================
+           IMPACT STATEMENT SECTION
+        ======================================== */
+        .impact-statement {
+            background: rgba(231, 76, 60, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            border-left: 4px solid #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.1);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.1);
+        }
+
+        .statistics-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        /* ========================================
+           TABLE STYLES
+        ======================================== */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .spec-table th,
+        .spec-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(44, 85, 48, 0.1);
+        }
+
+        .spec-table th {
+            background: rgba(44, 85, 48, 0.9);
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .spec-table tr:hover {
+            background: rgba(44, 85, 48, 0.05);
+        }
+
+        /* ========================================
+           PROTOTYPE IMAGE
+        ======================================== */
+        .prototype-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .prototype-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+        @media (max-width: 768px) {
+            body::before {
+                background-attachment: scroll;
+            }
+            
+            .container {
+                margin: 1rem;
+                border-radius: 15px;
+                animation: none;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .header {
+                padding: 2rem 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .boards-carousel {
+                max-height: 500px;
+            }
+            
+            .current-board-image {
+                height: 350px;
+            }
+            
+            .nav-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .issues-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .statistics-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 0.5rem;
+                border-radius: 12px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .boards-carousel {
+                max-height: 400px;
+            }
+            
+            .current-board-image {
+                height: 280px;
+            }
+            
+            .nav-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+            
+            .back-to-home span {
+                display: none;
+            }
+
+            .back-to-home {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                padding: 0;
+                justify-content: center;
+            }
+        }
+
+        /* ========================================
+           ACCESSIBILITY & PRINT
+        ======================================== */
+        @media (prefers-reduced-motion: reduce) {
+            .container {
+                animation: none;
+            }
+            
+            .current-board-image,
+            .prototype-image {
+                transition: none;
+            }
+            
+            .back-to-home {
+                transition: none;
+            }
+        }
+
+        @media print {
+            .back-to-home {
+                display: none;
+            }
+            
+            body::before {
+                display: none;
+            }
+            
+            .container {
+                background: white;
+                backdrop-filter: none;
+                box-shadow: none;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <a href="https://ninguest.github.io/navigating-nature/main/" class="back-to-home" title="Back to Main Website">
+        <span class="icon">🏠</span>
+        <span>Back to Home</span>
+    </a>
+
+    <div class="container">
+        <header class="header">
+            <h1>Accessible Information Board</h1>
+            <p>Integrated Lectern Design for Glasgow Botanic Gardens</p>
+        </header>
+
+        <div class="content">
+            <div class="intro-box">
+                <strong>Project Overview:</strong> The Accessible Information Board is a multi-sensory information point designed to replace traditional visual-only signs at Glasgow Botanic Gardens. These lecterns provide rich, accessible information about plants and garden history for all visitors.
+            </div>
+
+            <!-- Current Information Board Analysis -->
+            <h2>Current Information Board Analysis</h2>
+            <div class="current-board-section">
+                <div class="current-board-intro">
+                    <p>Before introducing our accessible solution, let's examine the existing information boards currently used throughout Glasgow Botanic Gardens and identify their accessibility limitations.</p>
+                </div>
+
+                <!-- Current board carousel -->
+                <div class="image-container">
+                    <div class="boards-carousel">
+                        <div class="carousel-track">
+                            <div class="board-slide">
+                                <img src="../main/img/currentboard2.jpg" alt="Small black plant label with minimal text" class="current-board-image">
+                                <div class="image-caption">
+                                    <strong>Small Black Plant Labels:</strong> Not effective for broad public engagement due to poor visibility and purely factual content.
+                                </div>
+                            </div>
+                            <div class="board-slide">
+                                <img src="../main/img/currentboard3.jpg" alt="Larger black plant label" class="current-board-image">
+                                <div class="image-caption">
+                                    <strong>Larger Black Plant Labels:</strong> Still lacks accessibility features and engaging content for diverse audiences.
+                                </div>
+                            </div>
+                            <div class="board-slide">
+                                <img src="../main/img/currentboard4.jpg" alt="Small black tree label" class="current-board-image">
+                                <div class="image-caption">
+                                    <strong>Small Black Tree Labels:</strong> Not designed to engage the general public with stories or historical context.
+                                </div>
+                            </div>
+                            <div class="board-slide">
+                                <img src="../main/img/currentboard1.jpg" alt="Modern interpretive panel with good visual design" class="current-board-image">
+                                <div class="image-caption">
+                                    <strong>Modern Interpretive Panel:</strong> Strong visual design but lacks accessibility features like Braille, QR codes, and tactile elements.
+                                </div>
+                            </div>
+                            <div class="board-slide">
+                                <img src="../main/img/currentboard5.jpg" alt="Modern interpretive panel with good visual design" class="current-board-image">
+                                <div class="image-caption">
+                                    <strong>Another Modern Interpretive Panel:</strong> Another Strong visual design but lacks accessibility features like Braille, QR codes, and tactile elements.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-nav">
+                            <button class="nav-btn prev" aria-label="Previous slide">‹</button>
+                            <button class="nav-btn next" aria-label="Next slide">›</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessibility Issues -->
+                <div class="accessibility-issues">
+                    <h3>Identified Accessibility Barriers</h3>
+                    <div class="issues-grid">
+                        <div class="issue-card">
+                            <div class="issue-icon" style="background: #e74c3c;">⚠️</div>
+                            <h4>Visual Accessibility</h4>
+                            <ul>
+                                <li>Small font size difficult for visually impaired users</li>
+                                <li>Low contrast text on backgrounds</li>
+                                <li>No Braille or tactile elements</li>
+                                <li>Reflective surfaces cause glare</li>
+                            </ul>
+                        </div>
+
+                        <div class="issue-card">
+                            <div class="issue-icon" style="background: #f39c12;">📱</div>
+                            <h4>Digital Integration</h4>
+                            <ul>
+                                <li>No QR codes or digital connectivity</li>
+                                <li>Limited information due to space constraints</li>
+                                <li>No audio descriptions available</li>
+                                <li>No sign language video content</li>
+                            </ul>
+                        </div>
+
+                        <div class="issue-card">
+                            <div class="issue-icon" style="background: #9b59b6;">♿</div>
+                            <h4>Physical Accessibility</h4>
+                            <ul>
+                                <li>Fixed height not suitable for wheelchair users</li>
+                                <li>Vertical orientation difficult to read from seated position</li>
+                                <li>No tactile guidance for blind visitors</li>
+                                <li>Information positioned too high for some users</li>
+                            </ul>
+                        </div>
+
+                        <div class="issue-card">
+                            <div class="issue-icon" style="background: #e67e22;">🌧️</div>
+                            <h4>Environmental Factors</h4>
+                            <ul>
+                                <li>Weather damage affects readability</li>
+                                <li>Fading text due to UV exposure</li>
+                                <li>Water damage and rust on mounting</li>
+                                <li>Limited durability in Scottish weather</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact Statement -->
+                <div class="impact-statement">
+                    <h3>Impact on Visitor Experience</h3>
+                    <p>These accessibility limitations can prevent many visitors from fully engaging with the rich botanical and historical information available throughout the gardens. Visitors with visual impairments, hearing difficulties, mobility challenges, or those who prefer different learning styles may face barriers that limit their ability to access educational content and connect with the garden's heritage.</p>
+                    
+                    <div class="statistics-box">
+                        <div class="stat-item">
+                            <span class="stat-number">Limited</span>
+                            <span class="stat-label">accessibility options for diverse visitor needs</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Single</span>
+                            <span class="stat-label">format approach restricts information access</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">Visual-only</span>
+                            <span class="stat-label">information delivery method currently used</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solution Introduction -->
+            <div class="solution-bridge">
+                <h3>Our Accessible Solution</h3>
+                <p>Recognizing these critical gaps, our team has designed a comprehensive accessible information board system that addresses each of these limitations while maintaining the aesthetic beauty and educational mission of Glasgow Botanic Gardens.</p>
+            </div>
+
+            <!-- Prototype image -->
+            <div class="image-container">
+                <img src="../main/img/proto1.png" alt="Accessible Information Board prototype showing angled design with Braille, QR codes, and multi-format content" class="prototype-image">
+                <div class="image-caption">
+                    <strong>Our Accessible Solution:</strong> Multi-sensory information board designed for universal access
+                </div>
+            </div>
+
+            <h2>Design Purpose</h2>
+            <p>Positioned at key exhibits throughout Glasgow Botanic Gardens, these lecterns serve as primary information sources that bridge physical and digital content. Each board tells the story of specific plants while connecting visitors to the garden's rich 200-year history.</p>
+
+            <div class="history-section">
+                <h3>Glasgow Botanic Gardens Heritage</h3>
+                <p>Founded in 1817 by Thomas Hopkirk, a distinguished Glasgow botanist, the gardens began on an 8-acre site at Sandyford with support from local dignitaries and the University of Glasgow. Hopkirk donated over 3,000 plants, which formed the core of the garden's first collections. His vision was to create a garden for the city that would serve as a site for education to enrich the university's botany and medical teaching.</p>
+                <p>The gardens moved to their present site in 1842, where they have continued to grow and serve the community for over 180 years, making them one of Scotland's most treasured botanical collections.</p>
+            </div>
+
+            <h2>Key Features</h2>
+            <div class="features-list">
+                <ul>
+                    <li><strong>Ergonomic Design:</strong> Angled at comfortable height for all visitors including wheelchair users</li>
+                    <li><strong>Weather-Resistant Materials:</strong> Matte-finish bronze or etched zinc reduces glare</li>
+                    <li><strong>Dual-Format Text:</strong> Large print with complete Grade 2 Braille transcription</li>
+                    <li><strong>Tactile QR Codes:</strong> Raised borders help blind visitors locate digital content</li>
+                    <li><strong>Digital Integration:</strong> Links to audio descriptions and sign language videos</li>
+                </ul>
+            </div>
+
+            <h2>Technical Specifications</h2>
+            <table class="spec-table">
+                <tr>
+                    <th>Component</th>
+                    <th>Specification</th>
+                </tr>
+                <tr>
+                    <td>Height</td>
+                    <td>32-34 inches (wheelchair accessible)</td>
+                </tr>
+                <tr>
+                    <td>Material</td>
+                    <td>Matte bronze/etched zinc</td>
+                </tr>
+                <tr>
+                    <td>Text Size</td>
+                    <td>Minimum 24pt, high contrast</td>
+                </tr>
+                <tr>
+                    <td>Braille</td>
+                    <td>Grade 2 (uncontracted)</td>
+                </tr>
+                <tr>
+                    <td>QR Code</td>
+                    <td>2" x 2" with raised border</td>
+                </tr>
+            </table>
+
+            <h2>Implementation at Glasgow Botanic Gardens</h2>
+            <p>Each board will be positioned at significant plants and locations throughout the 27-acre site, providing visitors with comprehensive information about:</p>
+            
+            <div class="features-list">
+                <ul>
+                    <li>Individual plant species and their origins</li>
+                    <li>Historical significance within the garden's collection</li>
+                    <li>Connection to the garden's educational mission since 1817</li>
+                    <li>Seasonal changes and botanical characteristics</li>
+                    <li>Links to the garden's research and conservation work</li>
+                </ul>
+            </div>
+
+            <h2>User Experience Example</h2>
+            <div class="use-case">
+                <h3>Visiting the Kibble Palace Area</h3>
+                <p><strong>Scenario:</strong> A visitor approaches one of the historic trees near the famous Kibble Palace glasshouse.</p>
+                
+                <p><strong>Visual reader:</strong> Reads about the tree's species, when it was planted, and its connection to the garden's Victorian-era expansion.</p>
+                
+                <p><strong>Braille reader:</strong> Accesses the same detailed information through tactile reading.</p>
+                
+                <p><strong>Digital user:</strong> Scans the QR code to hear an audio description of the tree's scale and seasonal changes, or watch a sign language interpretation of its historical significance to Glasgow's botanical heritage.</p>
+            </div>
+
+            <h2>Benefits</h2>
+            <p>The Accessible Information Board ensures that all visitors to Glasgow Botanic Gardens, regardless of their abilities, can fully appreciate both the natural beauty and rich history of this treasured Glasgow institution. By combining traditional materials with modern technology, these boards honor the garden's heritage while embracing inclusive design principles.</p>
+
+            <p>This approach transforms how visitors experience the gardens, creating opportunities for deeper engagement with both the plants and the stories they represent in Glasgow's cultural and educational landscape.</p>
+        </div>
+    </div>
+
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.board-slide');
+            const prevBtn = document.querySelector('.nav-btn.prev');
+            const nextBtn = document.querySelector('.nav-btn.next');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+            
+            function updateCarousel() {
+                const translateX = -currentSlide * 100;
+                track.style.transform = `translateX(${translateX}%)`;
+            }
+            
+            if (nextBtn && prevBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarousel();
+                });
+                
+                prevBtn.addEventListener('click', () => {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateCarousel();
+                });
+                
+                // Auto-advance carousel every 7 seconds
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarousel();
+                }, 7000);
+            }
+        });
+    </script>
+</body>
+</html>
