@@ -1,0 +1,276 @@
+body {
+  background-color: #F9F6EF;
+}
+
+.name-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header > img {
+    height: 150px;
+}
+
+/*Navigation Bar*/
+.navbar {
+  text-align: center;
+  padding: 20px;
+  background-color: #F9F6EF;
+}
+
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  gap: 40px;
+}
+
+.nav-menu li {
+  position: relative;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+  z-index: 1;
+}
+
+.nav-menu .dropdown-content li {
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.nav-menu .dropdown-content a {
+  color: #333;
+  display: block;
+}
+
+.nav-menu .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*Container*/
+.container-div {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 20px 20px;
+    padding: 20px;
+    display: flex;
+}
+
+.container-div > div {
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.button-next {
+    padding: 0px 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.next-btn {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    background-color: #4b734b;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.next-btn:hover {
+    background-color: #365836;
+}
+
+/*Tree-trail*/
+.container-tree {
+    background: white;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 12px;
+    margin : 20px 40px
+}
+
+.gallery {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.gallery img {
+  width: 31.5%;   
+  height: 295px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.enter-btn {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    background-color: #4b734b;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.enter-btn:hover {
+    background-color: #365836;
+}
+
+.tree-title {
+  color: rgb(31, 24, 24);
+  margin-top: 0px;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid;
+  font-size: 40px;
+}
+
+/*Calander*/
+
+.calander-container {
+    display: flex;
+    background: white;
+    padding: 20px;
+    gap: 30px;
+    margin: 20px;
+}
+
+#calendar {
+  width: 60%;
+}
+
+.booking-form {
+    width: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.fc-event.status-available {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+.fc-event.status-fast {
+  background-color: #ffc107 !important;
+  color: black !important;
+}
+
+.fc-event.status-full {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+form {
+  max-width: 500px;
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+  width: 100%;
+}
+
+form h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+select, input[type="number"] {
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+#tourTypeSelector {
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+#tourTypeSelector label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+#calendar {
+  max-width: 900px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+#tourTypeSelector {
+    text-align: center;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+

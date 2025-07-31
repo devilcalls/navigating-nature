@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Book a Tour!</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/rrule@2.7.1/dist/es5/rrule.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.8/index.global.min.js"></script>
+
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <header>
+            <img src="glasgow_logo.png" alt="Botanic Gardens Logo">
+            <h2 class="name-title">FRIENDS OF GLASGOW BOTANIC GARDENS</h2>
+        </header>
+
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">The Friends <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Become a friend</a></li>
+                        <li><a href="#">Donate</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">The Gardens <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">History</a></li>
+                        <li><a href="tree-trail.html">Tree Trail</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Education <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">RBGE Certificate in Practical Horticulture</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#">News</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Visit <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="#">Tours</a></li>
+                        <li><a href="#">Getting Here</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Frequent Ask Questions</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!--Calander-->
+        <div class="calander-container ">
+            <div id="calendar"></div>
+            <div class="booking-form">
+                <form id="bookingForm">
+                    <h3>Book a Tour!</h3>
+                    <p id="slotInfo" style="text-align: center; font-weight: bold;"></p>
+
+                    <div id="tourTypeSelector" style="text-align: center; margin: 20px 0;">
+                        <label for="tourType"><strong>Select Tour Type:</strong></label>
+                        <select id="tourType" style="width: 100%;">
+                            <option value="">-- Select --</option>
+                            <option value="accessible">Accessible Tour (2nd Thursday)</option>
+                            <option value="normal">Normal Tour (Tue, Thu, Sat)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectedDate">Selected Date:</label>
+                        <input type="text" id="selectedDate" name="selectedDate" readonly required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numPax">Number of Pax:</label>
+                        <input type="number" id="numPax" name="numPax" min="1" max="10" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <button type="submit">Submit Booking</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const calendarEl = document.getElementById('calendar');
+                const tourTypeSelect = document.getElementById('tourType');
+
+                const tourTypeDisplay = document.getElementById('tourTypeDisplay');
+                const tourTypeHidden = document.getElementById('tourTypeHidden');
+
+                const allEvents = [
+                // Accessible Tour – 2nd Thursday only
+                {
+                    title: 'Accessible Tour',
+                    rrule: {
+                    freq: 'monthly',
+                    bysetpos: 2,
+                    byweekday: 'th',
+                    dtstart: '2025-08-01T00:00:00'
+                    },
+                    extendedProps: {
+                    type: 'accessible',
+                    times: [
+                        { time: '11:00', available: 4, capacity: 10 },
+                        { time: '14:00', available: 2, capacity: 10 }
+                    ]
+                    }
+                },
+                // Normal Tour – Tuesday
+                {
+                    title: 'Normal Tour – Tuesday',
+                    rrule: {
+                    freq: 'weekly',
+                    byweekday: 'tu',
+                    dtstart: '2025-08-05T00:00:00'
+                    },
+                    extendedProps: {
+                    type: 'normal',
+                    times: [
+                        { time: '11:00', available: 9, capacity: 10 }
+                    ]
+                    }
+                },
+                // Normal Tour – Thursday
+                {
+                    title: 'Normal Tour – Thursday',
+                    rrule: {
+                    freq: 'weekly',
+                    byweekday: 'th',
+                    dtstart: '2025-08-07T00:00:00'
+                    },
+                    extendedProps: {
+                    type: 'normal',
+                    times: [
+                        { time: '11:00', available: 5, capacity: 10 },
+                        { time: '14:00', available: 4, capacity: 10 }
+                    ]
+                    }
+                },
+                // Normal Tour – Saturday
+                {
+                    title: 'Normal Tour – Saturday',
+                    rrule: {
+                    freq: 'weekly',
+                    byweekday: 'sa',
+                    dtstart: '2025-08-09T00:00:00'
+                    },
+                    extendedProps: {
+                    type: 'normal',
+                    times: [
+                        { time: '11:00', available: 10, capacity: 10 }
+                    ]
+                    }
+                }
+                ];
+
+                const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                selectable: true,
+
+                dateClick: function(info) {
+                    const selectedType = tourTypeSelect.value;
+                    if (!selectedType) return;
+
+                    const selectedDate = info.dateStr;
+                    document.getElementById('selectedDate').value = selectedDate;
+
+                    const timeSelect = document.getElementById('timeSelect');
+                    timeSelect.innerHTML = '<option value="">-- Please select --</option>';
+                    document.getElementById('slotInfo').textContent = '';
+
+                    const matchingEvents = calendar.getEvents().filter(ev =>
+                    ev.startStr.startsWith(selectedDate) &&
+                    ev.extendedProps.type === selectedType
+                    );
+
+                    if (matchingEvents.length > 0) {
+                    const { title, extendedProps } = matchingEvents[0];
+                    const totalAvailable = extendedProps.times.reduce((a, b) => a + b.available, 0);
+                    const totalCapacity = extendedProps.times.reduce((a, b) => a + b.capacity, 0);
+                    document.getElementById('slotInfo').textContent = `${title} – ${totalAvailable}/${totalCapacity} slots left`;
+
+                    extendedProps.times.forEach(slot => {
+                        const opt = document.createElement('option');
+                        const label = slot.time === '14:00' ? '2:00 PM' : '11:00 AM';
+                        opt.value = slot.time;
+                        opt.textContent = `${label} – ${slot.available}/${slot.capacity} slots${slot.available === 0 ? ' (Full)' : ''}`;
+                        opt.disabled = slot.available === 0;
+                        timeSelect.appendChild(opt);
+                    });
+                    } else {
+                    document.getElementById('slotInfo').textContent = "No matching tour on this date.";
+                    }
+
+                    document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth' });
+                },
+
+                eventDidMount: function(info) {
+                    const times = info.event.extendedProps.times;
+                    const totalAvailable = times.reduce((a, b) => a + b.available, 0);
+                    const totalCapacity = times.reduce((a, b) => a + b.capacity, 0);
+                    const ratio = totalAvailable / totalCapacity;
+
+                    let status = 'status-available';
+                    if (ratio === 0) status = 'status-full';
+                    else if (ratio <= 0.3) status = 'status-fast';
+
+                    info.el.classList.add(status);
+                }
+                });
+
+                tourTypeSelect.addEventListener('change', () => {
+                const selectedType = tourTypeSelect.value;
+                calendar.removeAllEvents();
+                calendar.unselect();
+
+                if (selectedType) {
+                    const filtered = allEvents.filter(e => e.extendedProps.type === selectedType);
+                    calendar.addEventSource(filtered);
+                    calendarEl.classList.remove('disabled');
+
+                    // Update form with selected tour type
+                    const selectedText = tourTypeSelect.options[tourTypeSelect.selectedIndex].textContent;
+                    tourTypeDisplay.value = selectedText;
+                    tourTypeHidden.value = selectedType;
+                } else {
+                    calendarEl.classList.add('disabled');
+
+                    // Clear form tour type
+                    tourTypeDisplay.value = '';
+                    tourTypeHidden.value = '';
+                }
+                });
+
+                calendar.render();
+            });
+        </script>
+
+
+
+
+    </body>
+</html>

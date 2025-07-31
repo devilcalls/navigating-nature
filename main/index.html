@@ -674,6 +674,44 @@ small {
     grid-template-columns: 1fr;
   }
 }
+
+/* Video Embed Styles */
+.video-embed {
+  transition: var(--transition);
+}
+
+.video-embed:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(44, 62, 80, 0.15) !important;
+}
+
+.video-container iframe {
+  transition: var(--transition);
+}
+
+.video-container:hover iframe {
+  transform: scale(1.02);
+}
+
+/* Mobile responsiveness for video */
+@media (max-width: 768px) {
+  .video-embed {
+    margin-top: 1rem;
+    padding: 0.8rem;
+  }
+  
+  .video-embed h4 {
+    font-size: 1rem;
+  }
+  
+  .video-container {
+    border-radius: 8px;
+  }
+  
+  .video-container iframe {
+    border-radius: 8px;
+  }
+}
   </style>
 </head>
 
@@ -778,6 +816,56 @@ small {
         Conducted a field visit at the Botanic Gardens.
         Sketched early concepts for inclusive features.
       </p>
+      
+      <!-- Add YouTube embed here -->
+      <div class="video-embed" style="
+        margin-top: 1.5rem;
+        background: var(--clr-glass);
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        border: 1px solid var(--clr-glass-border);
+        box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+      ">
+        <h4 style="
+          color: var(--clr-primary);
+          font-size: 1.1rem;
+          margin: 0 0 1rem 0;
+          text-align: center;
+          font-family: var(--font-heading);
+        ">📹 Pitch 1 Video</h4>
+        <div class="video-container" style="
+          position: relative;
+          width: 100%;
+          height: 0;
+          padding-bottom: 56.25%; /* 16:9 aspect ratio */
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        ">
+          <iframe 
+            src="https://www.youtube.com/embed/vSzRn3Ek_rM" 
+            title="Pitch 1 Video - Glasgow Botanic Gardens Accessibility Project"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: 12px;
+            ">
+          </iframe>
+        </div>
+        <p style="
+          margin: 0.8rem 0 0 0;
+          font-size: 0.9rem;
+          color: var(--clr-text-muted);
+          text-align: center;
+          font-style: italic;
+        ">Initial project pitch presentation showcasing our accessibility research and proposed solutions</p>
+      </div>
     </div>
 
     <div class="timeline-item">
