@@ -467,7 +467,7 @@ section {
 #to-top-btn {
   position: fixed;
   right: 2rem;
-  z-index: 999;
+  z-index: 1001;
   border: none;
   border-radius: 8px;
   width: 55px;
@@ -476,6 +476,7 @@ section {
   transition: var(--transition);
   border: 2px solid var(--clr-glass-border);
   font-family: var(--font-primary);
+  will-change: transform;
 }
 
 #theme-toggle {
@@ -575,7 +576,9 @@ small {
   #main-nav {
     padding: 0.8rem 1rem;
     justify-content: flex-start;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 
   #nav-toggle {
@@ -669,6 +672,8 @@ small {
     right: 1rem;
     width: 50px;
     height: 50px;
+    position: fixed !important;
+    z-index: 1001;
   }
 
   .grid-3 {

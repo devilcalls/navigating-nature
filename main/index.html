@@ -15,6 +15,42 @@
 </head>
 
 <body>
+
+<!-- Move theme toggle button to bottom right and add a "move to top" button -->
+<button id="theme-toggle" style="
+  position:fixed !important;
+  bottom:1.5rem !important;
+  right:1.5rem !important;
+  z-index:999 !important;
+  background:var(--clr-primary);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.10);
+"><i class="fa-solid fa-moon"></i></button>
+
+<button id="to-top-btn" style="
+  position:fixed;
+  bottom:5.5rem;
+  right:1.5rem;
+  z-index:998;
+  background:var(--clr-accent);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.10);
+  display:none;
+  font-size:1.3em;
+" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
 <!-- NAVIGATION -->
 <nav id="main-nav">
   <button id="nav-toggle" aria-label="Open navigation">
@@ -682,41 +718,6 @@
   "></div>
   <article id="modal-content" style="z-index:1;position:relative;"></article>
 </dialog>
-
-<!-- Move theme toggle button to bottom right and add a "move to top" button -->
-<button id="theme-toggle" style="
-  position:fixed;
-  bottom:1.5rem;
-  right:1.5rem;
-  z-index:999;
-  background:var(--clr-primary);
-  color:#fff;
-  border:none;
-  border-radius:50%;
-  width:50px;
-  height:50px;
-  cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,0.10);
-"><i class="fa-solid fa-moon"></i></button>
-
-<button id="to-top-btn" style="
-  position:fixed;
-  bottom:5.5rem;
-  right:1.5rem;
-  z-index:998;
-  background:var(--clr-accent);
-  color:#fff;
-  border:none;
-  border-radius:50%;
-  width:50px;
-  height:50px;
-  cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,0.10);
-  display:none;
-  font-size:1.3em;
-" aria-label="Back to top">
-  <i class="fa-solid fa-arrow-up"></i>
-</button>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
