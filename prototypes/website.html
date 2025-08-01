@@ -706,6 +706,749 @@
                 animation: none;
             }
         }
+        /* ========================================
+           DEMO WEBSITE SECTION
+        ======================================== */
+        .demo-website-section {
+            background: rgba(46, 204, 113, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2.5rem 0;
+            border: 2px solid rgba(46, 204, 113, 0.3);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.15);
+            text-align: center;
+        }
+
+        .demo-website-section h3 {
+            color: #27ae60;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .demo-website-section p {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .demo-link-container {
+            margin: 2rem 0;
+        }
+
+        .demo-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            text-decoration: none;
+            padding: 1.5rem 2.5rem;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            min-width: 300px;
+        }
+
+        .demo-button:hover {
+            background: linear-gradient(135deg, #229954, #27ae60);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.5);
+        }
+
+        .demo-icon {
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .demo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.3rem;
+        }
+
+        .demo-text strong {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .demo-text small {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+        }
+
+        .demo-arrow {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .demo-button:hover .demo-arrow {
+            transform: translateX(5px);
+        }
+
+        .demo-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .demo-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c3e50;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+
+        .demo-feature .feature-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Mobile responsiveness for demo section */
+        @media (max-width: 768px) {
+            .demo-website-section {
+                padding: 2rem 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .demo-button {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem;
+                min-width: auto;
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .demo-text {
+                align-items: center;
+                text-align: center;
+            }
+            
+            .demo-features {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            
+            .demo-feature {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .demo-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-button {
+                padding: 1.2rem;
+            }
+            
+            .demo-text strong {
+                font-size: 1.1rem;
+            }
+            
+            .demo-text small {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Accessibility enhancements for demo button */
+        @media (prefers-reduced-motion: reduce) {
+            .demo-icon {
+                animation: none;
+            }
+            
+            .demo-button {
+                transition: none;
+            }
+        }
+        /* ========================================
+           CAROUSEL STYLES
+        ======================================== */
+        .carousel-container {
+            position: relative;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(52, 152, 219, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ensure first slide is visible by default */
+        .carousel-slide:first-child {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .carousel-slide.prev {
+            transform: translateX(-100%);
+        }
+
+        .carousel-slide .website-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .carousel-slide .website-image:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        .carousel-slide .image-caption {
+            background: rgba(52, 152, 219, 0.9);
+            backdrop-filter: blur(15px);
+            color: white;
+            padding: 1.2rem 1.5rem;
+            border-radius: 0;
+            margin-top: 0;
+            font-size: 0.95rem;
+            border: none;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .carousel-slide .image-caption strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+        }
+
+        /* Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(52, 152, 219, 0.9);
+            backdrop-filter: blur(15px);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .carousel-btn:hover {
+            background: rgba(41, 128, 185, 0.95);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .carousel-btn:focus {
+            outline: 3px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 2px;
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        .carousel-arrow {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        /* Dots Navigation */
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        .carousel-dot.active {
+            background: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .carousel-dot:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 2px;
+        }
+
+        /* Auto-play indicator */
+        .carousel-container::after {
+            content: '⏸️ Click to pause auto-play';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .carousel-container:hover::after {
+            opacity: 1;
+        }
+
+        .carousel-container.paused::after {
+            content: '▶️ Click to resume auto-play';
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .carousel-wrapper {
+                height: 400px;
+            }
+
+            .carousel-slide .website-image {
+                height: 300px;
+            }
+
+            .carousel-slide .image-caption {
+                height: 100px;
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .carousel-prev {
+                left: 10px;
+            }
+
+            .carousel-next {
+                right: 10px;
+            }
+
+            .carousel-arrow {
+                font-size: 1.2rem;
+            }
+
+            .carousel-dots {
+                bottom: 15px;
+                gap: 8px;
+            }
+
+            .carousel-dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-wrapper {
+                height: 350px;
+            }
+
+            .carousel-slide .website-image {
+                height: 250px;
+            }
+
+            .carousel-slide .image-caption {
+                height: 100px;
+                padding: 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .carousel-slide .image-caption strong {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Accessibility: Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .carousel-slide {
+                transition: opacity 0.3s ease;
+            }
+
+            .carousel-slide:not(.active) {
+                transform: none;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .carousel-container::after,
+            .carousel-btn,
+            .carousel-dots {
+                display: none;
+            }
+
+            .carousel-slide:not(.active) {
+                display: none;
+            }
+        }
+        /* ========================================
+           IMAGE MODAL/LIGHTBOX
+        ======================================== */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-modal.active {
+            display: flex;
+            opacity: 1;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .modal-caption {
+            background: rgba(52, 152, 219, 0.95);
+            color: white;
+            padding: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: center;
+            backdrop-filter: blur(15px);
+        }
+
+        .modal-caption strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+            color: #ff6b6b;
+        }
+
+        .modal-close:focus {
+            outline: 3px solid rgba(255, 255, 255, 0.6);
+            outline-offset: 2px;
+        }
+
+        .modal-navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(52, 152, 219, 0.9);
+            backdrop-filter: blur(15px);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+
+        .modal-navigation:hover {
+            background: rgba(41, 128, 185, 0.95);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .modal-navigation:focus {
+            outline: 3px solid rgba(255, 255, 255, 0.6);
+            outline-offset: 2px;
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        .modal-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Loading indicator */
+        .modal-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .modal-loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile responsiveness for modal */
+        @media (max-width: 768px) {
+            .modal-content {
+                max-width: 100vw;
+                max-height: 100vh;
+                border-radius: 0;
+                padding: 0;
+            }
+
+            .modal-image {
+                max-height: 70vh;
+                border-radius: 0;
+            }
+
+            .modal-caption {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            .modal-caption strong {
+                font-size: 1.1rem;
+            }
+
+            .modal-close {
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                right: 10px;
+                font-size: 1.3rem;
+            }
+
+            .modal-navigation {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .modal-prev {
+                left: 15px;
+            }
+
+            .modal-next {
+                right: 15px;
+            }
+
+            .modal-counter {
+                bottom: 15px;
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-caption {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+
+            .modal-navigation {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+        }
+
+        /* Accessibility enhancements */
+        @media (prefers-reduced-motion: reduce) {
+            .image-modal {
+                transition: none;
+            }
+
+            .modal-content {
+                animation: none;
+            }
+
+            .carousel-slide .website-image {
+                transition: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -811,10 +1554,63 @@
                 <h3>Platform Architecture</h3>
 
                 <div class="website-mockup">
-                    <img src="../main/img/proto3.png" alt="Screenshot of the accessibility website showing the homepage with navigation, interactive map, and multimedia content sections" class="website-image">
-                    <div class="image-caption">
-                        <strong>Accessibility Website Interface:</strong> Comprehensive digital platform featuring interactive maps, multimedia content, and WCAG-compliant design
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper">
+                            <div class="carousel-slide active">
+                                <img src="../main/img/proto3.png" alt="Prototype Interface showing the Accessibility Website layout" class="website-image">
+                                <div class="image-caption">
+                                    <strong>Prototype Interface:</strong> Simplified layout showcasing the Accessibility Website
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <img src="../main/img/demoweb1.png" alt="Demo Plant/Tree Introduction Page with interactive layout" class="website-image">
+                                <div class="image-caption">
+                                    <strong>Demo Plant/Tree Introduction Page:</strong> Interactive layout featuring plant/tree information, images, and accessibility options
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <img src="../main/img/demowebsite2.png" alt="Demo Booking Guided Tour Page interface" class="website-image">
+                                <div class="image-caption">
+                                    <strong>Demo Booking Guided Tour Page:</strong> User-friendly interface for scheduling and managing guided tours
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation Arrows -->
+                        <button class="carousel-btn carousel-prev" aria-label="Previous image">
+                            <i class="carousel-arrow">‹</i>
+                        </button>
+                        <button class="carousel-btn carousel-next" aria-label="Next image">
+                            <i class="carousel-arrow">›</i>
+                        </button>
+                        
+                        <!-- Dots Navigation -->
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Go to slide 1" data-slide="0"></button>
+                            <button class="carousel-dot" aria-label="Go to slide 2" data-slide="1"></button>
+                            <button class="carousel-dot" aria-label="Go to slide 3" data-slide="2"></button>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Add the demo link section here -->
+                <div class="demo-website-section">
+                    <h3>🚀 Experience the Live Demo</h3>
+                    <p>Explore the semi-functional prototype of the Accessibility Website to see how visitors would interact with the platform:</p>
+                    
+                    <div class="demo-link-container">
+                        <a href="../demo website/corsican-pine.html" class="demo-button" target="_blank" rel="noopener noreferrer">
+                            <span class="demo-icon">🌐</span>
+                            <div class="demo-text">
+                                <strong>Launch Demo Website</strong>
+                                <small>Interactive prototype with full navigation and multimedia content</small>
+                            </div>
+                            <span class="demo-arrow">→</span>
+                        </a>
+                    </div>
+            
                 </div>
 
                 <div class="page-sections">
@@ -1036,7 +1832,38 @@
         </div>
     </div>
 
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close image viewer" title="Close (Esc)">&times;</button>
+            <div class="modal-loading" style="display: none;">Loading image...</div>
+            <img id="modalImage" class="modal-image" src="" alt="" style="display: none;">
+            <div id="modalCaption" class="modal-caption">
+                <strong id="modal-title"></strong>
+                <span id="modal-description"></span>
+            </div>
+            <button class="modal-navigation modal-prev" aria-label="Previous image" title="Previous (←)">‹</button>
+            <button class="modal-navigation modal-next" aria-label="Next image" title="Next (→)">›</button>
+            <div class="modal-counter">
+                <span id="modalCounter">1 of 3</span>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Create announcer element globally for screen reader support
+        const announcer = document.createElement('div');
+        announcer.setAttribute('aria-live', 'polite');
+        announcer.setAttribute('aria-atomic', 'true');
+        announcer.style.cssText = `
+            position: absolute;
+            left: -10000px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        `;
+        document.body.appendChild(announcer);
+
         // Enhanced accessibility features
         document.addEventListener('DOMContentLoaded', function() {
             // Enhanced keyboard navigation for feature cards
@@ -1051,19 +1878,6 @@
                 });
             });
 
-            // Announce content updates for screen readers
-            const announcer = document.createElement('div');
-            announcer.setAttribute('aria-live', 'polite');
-            announcer.setAttribute('aria-atomic', 'true');
-            announcer.style.cssText = `
-                position: absolute;
-                left: -10000px;
-                width: 1px;
-                height: 1px;
-                overflow: hidden;
-            `;
-            document.body.appendChild(announcer);
-
             // Add focus indicators for better keyboard navigation
             const focusableElements = document.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
             focusableElements.forEach(element => {
@@ -1076,12 +1890,524 @@
                     this.style.outlineOffset = '';
                 });
             });
+
+            // Modal/Lightbox functionality
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalCounter = document.getElementById('modalCounter');
+            const modalClose = document.querySelector('.modal-close');
+            const modalPrev = document.querySelector('.modal-prev');
+            const modalNext = document.querySelector('.modal-next');
+            const modalLoading = document.querySelector('.modal-loading');
+            
+            let modalCurrentSlide = 0;
+            let previousFocus = null;
+
+            // Image data for modal
+            const imageData = [
+                {
+                    src: '../main/img/proto3.png',
+                    alt: 'Prototype Interface showing the Accessibility Website layout',
+                    title: 'Prototype Interface',
+                    description: 'Simplified layout showcasing the Accessibility Website'
+                },
+                {
+                    src: '../main/img/demoweb1.png',
+                    alt: 'Demo Plant/Tree Introduction Page with interactive layout',
+                    title: 'Demo Plant/Tree Introduction Page',
+                    description: 'Interactive layout featuring plant/tree information, images, and accessibility options'
+                },
+                {
+                    src: '../main/img/demowebsite2.png',
+                    alt: 'Demo Booking Guided Tour Page interface',
+                    title: 'Demo Booking Guided Tour Page',
+                    description: 'User-friendly interface for scheduling and managing guided tours'
+                }
+            ];
+
+            function openModal(slideIndex) {
+                modalCurrentSlide = slideIndex;
+                previousFocus = document.activeElement;
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                showModalImage(modalCurrentSlide);
+                
+                // Focus management for accessibility
+                modalClose.focus();
+                
+                // Trap focus within modal
+                trapFocus(modal);
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Return focus to previously focused element
+                if (previousFocus) {
+                    previousFocus.focus();
+                    previousFocus = null;
+                }
+                
+                // Remove focus trap
+                removeFocusTrap();
+            }
+
+            function showModalImage(index) {
+                if (index < 0) index = imageData.length - 1;
+                if (index >= imageData.length) index = 0;
+                
+                modalCurrentSlide = index;
+                const data = imageData[index];
+                
+                // Show loading indicator
+                modalLoading.style.display = 'block';
+                modalImage.style.display = 'none';
+                
+                // Update content
+                modalImage.src = data.src;
+                modalImage.alt = data.alt;
+                modalTitle.textContent = data.title;
+                modalDescription.textContent = data.description;
+                modalCounter.textContent = `${index + 1} of ${imageData.length}`;
+                
+                // Handle image loading
+                modalImage.onload = function() {
+                    modalLoading.style.display = 'none';
+                    modalImage.style.display = 'block';
+                };
+                
+                modalImage.onerror = function() {
+                    modalLoading.style.display = 'none';
+                    modalImage.style.display = 'block';
+                    modalImage.alt = 'Image failed to load';
+                };
+            }
+
+            function nextModalImage() {
+                showModalImage(modalCurrentSlide + 1);
+            }
+
+            function prevModalImage() {
+                showModalImage(modalCurrentSlide - 1);
+            }
+
+            // Event listeners for modal
+            
+            // Open modal when carousel images are clicked
+            document.querySelectorAll('.carousel-slide .website-image').forEach((img, index) => {
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(index);
+                });
+                
+                // Keyboard support for images
+                img.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openModal(index);
+                    }
+                });
+                
+                // Make images focusable
+                img.tabIndex = 0;
+                img.setAttribute('role', 'button');
+                img.setAttribute('aria-label', 'Click to view full size image');
+            });
+
+            // Close modal
+            if (modalClose) modalClose.addEventListener('click', closeModal);
+            if (modalNext) modalNext.addEventListener('click', nextModalImage);
+            if (modalPrev) modalPrev.addEventListener('click', prevModalImage);
+
+            // Close modal when clicking outside content
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // Keyboard navigation for modal
+            document.addEventListener('keydown', (e) => {
+                if (!modal || !modal.classList.contains('active')) return;
+                
+                switch(e.key) {
+                    case 'Escape':
+                        e.preventDefault();
+                        closeModal();
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        prevModalImage();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        nextModalImage();
+                        break;
+                }
+            });
+
+            // Focus trap functionality
+            function trapFocus(element) {
+                const focusableElements = element.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                const firstFocusable = focusableElements[0];
+                const lastFocusable = focusableElements[focusableElements.length - 1];
+
+                element.addEventListener('keydown', handleFocusTrap);
+
+                function handleFocusTrap(e) {
+                    if (e.key !== 'Tab') return;
+
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusable) {
+                            e.preventDefault();
+                            lastFocusable.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusable) {
+                            e.preventDefault();
+                            firstFocusable.focus();
+                        }
+                    }
+                }
+
+                // Store the handler so we can remove it later
+                element._focusTrapHandler = handleFocusTrap;
+            }
+
+            function removeFocusTrap() {
+                if (modal && modal._focusTrapHandler) {
+                    modal.removeEventListener('keydown', modal._focusTrapHandler);
+                    delete modal._focusTrapHandler;
+                }
+            }
+
+            // Touch/swipe support for modal
+            let modalTouchStartX = 0;
+            let modalTouchEndX = 0;
+
+            if (modal) {
+                modal.addEventListener('touchstart', (e) => {
+                    modalTouchStartX = e.changedTouches[0].screenX;
+                });
+
+                modal.addEventListener('touchend', (e) => {
+                    modalTouchEndX = e.changedTouches[0].screenX;
+                    handleModalSwipe();
+                });
+            }
+
+            function handleModalSwipe() {
+                const swipeThreshold = 50;
+                const diff = modalTouchStartX - modalTouchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextModalImage(); // Swipe left - next image
+                    } else {
+                        prevModalImage(); // Swipe right - previous image
+                    }
+                }
+            }
+
+            // Sync modal with carousel
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'currentSlide') {
+                    const newSlide = parseInt(e.newValue);
+                    if (!isNaN(newSlide) && modal && modal.classList.contains('active')) {
+                        showModalImage(newSlide);
+                    }
+                }
+            });
         });
 
         // Respect user's reduced motion preferences
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             document.documentElement.style.setProperty('--animation-duration', '0ms');
         }
+
+        // Carousel functionality - moved outside DOMContentLoaded to avoid scope issues
+        let currentSlide = 0;
+        let isAutoPlaying = true;
+        let autoPlayInterval;
+        let slides, dots, prevBtn, nextBtn, carouselContainer;
+
+        function initializeCarousel() {
+            slides = document.querySelectorAll('.carousel-slide');
+            dots = document.querySelectorAll('.carousel-dot');
+            prevBtn = document.querySelector('.carousel-prev');
+            nextBtn = document.querySelector('.carousel-next');
+            carouselContainer = document.querySelector('.carousel-container');
+
+            // Event listeners
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+
+            // Pause auto-play on hover
+            if (carouselContainer) {
+                carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+                carouselContainer.addEventListener('mouseleave', () => {
+                    if (isAutoPlaying) startAutoPlay();
+                });
+
+                // Click to toggle auto-play
+                carouselContainer.addEventListener('click', (e) => {
+                    if (e.target === carouselContainer) {
+                        toggleAutoPlay();
+                    }
+                });
+            }
+
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            if (carouselContainer) {
+                carouselContainer.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                carouselContainer.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+            }
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        nextSlide(); // Swipe left - next slide
+                    } else {
+                        prevSlide(); // Swipe right - previous slide
+                    }
+                }
+            }
+
+            // Initialize carousel - WAIT FOR IMAGES TO LOAD
+            if (slides.length > 0) {
+                // First, ensure the first slide is immediately visible
+                showSlideImmediate(0);
+                
+                // Then wait for images to load before starting auto-play
+                waitForImagesToLoad().then(() => {
+                    startAutoPlay();
+                });
+            }
+        }
+
+        // NEW FUNCTION: Show slide immediately without transitions
+        function showSlideImmediate(index) {
+            if (!slides || slides.length === 0) return;
+
+            // Remove active class from all slides and dots
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'prev');
+                slide.style.transition = 'none'; // Disable transitions temporarily
+            });
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Update current slide index
+            currentSlide = index;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+
+            // Show new slide immediately
+            if (slides[currentSlide]) {
+                slides[currentSlide].classList.add('active');
+                if (dots[currentSlide]) {
+                    dots[currentSlide].classList.add('active');
+                }
+            }
+
+            // Re-enable transitions after a brief delay
+            setTimeout(() => {
+                slides.forEach(slide => {
+                    slide.style.transition = '';
+                });
+            }, 50);
+        }
+
+        // NEW FUNCTION: Wait for all carousel images to load
+        function waitForImagesToLoad() {
+            return new Promise((resolve) => {
+                const images = document.querySelectorAll('.carousel-slide .website-image');
+                let loadedCount = 0;
+                const totalImages = images.length;
+
+                if (totalImages === 0) {
+                    resolve();
+                    return;
+                }
+
+                function imageLoaded() {
+                    loadedCount++;
+                    if (loadedCount === totalImages) {
+                        resolve();
+                    }
+                }
+
+                images.forEach(img => {
+                    if (img.complete) {
+                        imageLoaded();
+                    } else {
+                        img.addEventListener('load', imageLoaded);
+                        img.addEventListener('error', imageLoaded); // Handle failed loads too
+                    }
+                });
+
+                // Fallback timeout in case some images never load
+                setTimeout(() => {
+                    if (loadedCount < totalImages) {
+                        console.log('Some carousel images failed to load, proceeding anyway');
+                        resolve();
+                    }
+                }, 3000);
+            });
+        }
+
+        function showSlide(index) {
+            if (!slides || slides.length === 0) return;
+
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active', 'prev'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Add prev class to current slide for exit animation
+            if (slides[currentSlide]) {
+                slides[currentSlide].classList.add('prev');
+            }
+
+            // Update current slide index
+            currentSlide = index;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+
+            // Show new slide
+            if (slides[currentSlide]) {
+                slides[currentSlide].classList.add('active');
+                if (dots[currentSlide]) {
+                    dots[currentSlide].classList.add('active');
+                }
+            }
+
+            // Announce slide change for screen readers
+            const caption = slides[currentSlide]?.querySelector('.image-caption strong')?.textContent;
+            if (caption && announcer) {
+                announcer.textContent = `Now showing: ${caption}`;
+            }
+        }
+
+        function showSlide(index) {
+            if (!slides || slides.length === 0) return;
+
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active', 'prev'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Add prev class to current slide for exit animation
+            if (slides[currentSlide]) {
+                slides[currentSlide].classList.add('prev');
+            }
+
+            // Update current slide index
+            currentSlide = index;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+
+            // Show new slide
+            if (slides[currentSlide]) {
+                slides[currentSlide].classList.add('active');
+                if (dots[currentSlide]) {
+                    dots[currentSlide].classList.add('active');
+                }
+            }
+
+            // Announce slide change for screen readers
+            const caption = slides[currentSlide]?.querySelector('.image-caption strong')?.textContent;
+            if (caption && announcer) {
+                announcer.textContent = `Now showing: ${caption}`;
+            }
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoPlay() {
+            if (!isAutoPlaying) return;
+            autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        function toggleAutoPlay() {
+            isAutoPlaying = !isAutoPlaying;
+            if (carouselContainer) {
+                carouselContainer.classList.toggle('paused', !isAutoPlaying);
+            }
+            
+            if (isAutoPlaying) {
+                startAutoPlay();
+            } else {
+                stopAutoPlay();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.target.closest('.carousel-container')) {
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        prevSlide();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        nextSlide();
+                        break;
+                    case ' ':
+                        e.preventDefault();
+                        toggleAutoPlay();
+                        break;
+                }
+            }
+        });
+
+        // Initialize everything when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCarousel();
+        });
+
+        // Pause auto-play when page is not visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoPlay();
+            } else if (isAutoPlaying) {
+                startAutoPlay();
+            }
+        });
     </script>
 </body>
 </html>

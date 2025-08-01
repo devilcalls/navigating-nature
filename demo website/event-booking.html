@@ -2,257 +2,421 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Book a Tour!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Book guided tours at Glasgow Botanic Gardens. Choose from accessible tours and regular garden tours with flexible scheduling.">
+        <title>Book a Tour - Glasgow Botanic Gardens</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/rrule@2.7.1/dist/es5/rrule.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/rrule@6.1.8/index.global.min.js"></script>
-
     </head>
     <body>
         <!--Navigation Bar-->
         <header>
-            <img src="glasgow_logo.png" alt="Botanic Gardens Logo">
+            <img src="glasgow_logo.png" alt="Glasgow Botanic Gardens Logo">
             <h2 class="name-title">FRIENDS OF GLASGOW BOTANIC GARDENS</h2>
         </header>
 
-        <nav class="navbar">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
             <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">The Friends <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Become a friend</a></li>
-                        <li><a href="#">Donate</a></li>
+                <li class="nav-disabled"><span>Home</span></li>
+                
+                <li class="dropdown nav-disabled">
+                    <span>The Friends <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></span>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">About Us</span></li>
+                        <li role="menuitem"><span class="disabled-link">Become a friend</span></li>
+                        <li role="menuitem"><span class="disabled-link">Donate</span></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#">The Gardens <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">History</a></li>
-                        <li><a href="tree-trail.html">Tree Trail</a></li>
+                    <a href="#" aria-expanded="false" aria-haspopup="true">The Gardens <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></a>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">History</span></li>
+                        <li role="menuitem"><a href="tree-trail.html">Tree Trail</a></li>
                     </ul>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#">Education <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">RBGE Certificate in Practical Horticulture</a></li>
+                <li class="dropdown nav-disabled">
+                    <span>Education <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></span>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">RBGE Certificate in Practical Horticulture</span></li>
                     </ul>
                 </li>
 
-                <li><a href="#">News</a></li>
+                <li class="nav-disabled"><span>News</span></li>
 
                 <li class="dropdown">
-                    <a href="#">Visit <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">Tours</a></li>
-                        <li><a href="#">Getting Here</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Frequent Ask Questions</a></li>
+                    <a href="#" aria-expanded="false" aria-haspopup="true">Visit <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></a>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><a href="event-booking.html" aria-current="page">Tours</a></li>
+                        <li role="menuitem"><span class="disabled-link">Getting Here</span></li>
+                        <li role="menuitem"><span class="disabled-link">Contact</span></li>
+                        <li role="menuitem"><span class="disabled-link">Frequently Asked Questions</span></li>
                     </ul>
                 </li>
             </ul>
         </nav>
-        <!--Calander-->
-        <div class="calander-container ">
-            <div id="calendar"></div>
-            <div class="booking-form">
-                <form id="bookingForm">
-                    <h3>Book a Tour!</h3>
-                    <p id="slotInfo" style="text-align: center; font-weight: bold;"></p>
 
-                    <div id="tourTypeSelector" style="text-align: center; margin: 20px 0;">
-                        <label for="tourType"><strong>Select Tour Type:</strong></label>
-                        <select id="tourType" style="width: 100%;">
-                            <option value="">-- Select --</option>
+        <main class="booking-main">
+            <header class="booking-hero">
+                <h1 class="booking-title">Book Your Garden Tour</h1>
+                <p class="booking-subtitle">Join us for an unforgettable guided experience through Glasgow Botanic Gardens</p>
+            </header>
+
+            <section class="tour-info-section" aria-label="Available tour types">
+                <div class="tour-types">
+                    <div class="tour-card">
+                        <div class="tour-card-header">
+                            <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
+                            <h3>Accessible Tours</h3>
+                        </div>
+                        <div class="tour-card-body">
+                            <p><strong>When:</strong> 2nd Thursday of each month</p>
+                            <p><strong>Times:</strong> 11:00 AM & 2:00 PM</p>
+                            <p><strong>Duration:</strong> 1.5 hours</p>
+                            <p><strong>Group Size:</strong> Up to 10 people</p>
+                            <p>Specially designed tours with accessibility features for visitors with mobility needs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tour-card">
+                        <div class="tour-card-header">
+                            <i class="fa-solid fa-users" aria-hidden="true"></i>
+                            <h3>Regular Tours</h3>
+                        </div>
+                        <div class="tour-card-body">
+                            <p><strong>When:</strong> Tuesday, Thursday & Saturday</p>
+                            <p><strong>Times:</strong> 11:00 AM (+ 2:00 PM Thu/Sat)</p>
+                            <p><strong>Duration:</strong> 1.5 hours</p>
+                            <p><strong>Group Size:</strong> Up to 10 people</p>
+                            <p>Comprehensive guided tours exploring the gardens' diverse plant collections and history.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="booking-section">
+                <div class="booking-instructions">
+                    <h2>How to Book</h2>
+                    <ol class="booking-steps">
+                        <li><span class="step-number">1</span> Select your preferred tour type below</li>
+                        <li><span class="step-number">2</span> Choose an available date from the calendar</li>
+                        <li><span class="step-number">3</span> Fill in your details and submit</li>
+                    </ol>
+                </div>
+
+                <div class="calendar-container">
+                    <div class="tour-selector-section">
+                        <label for="tourType" class="tour-selector-label">
+                            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                            Select Tour Type:
+                        </label>
+                        <select id="tourType" class="tour-selector" aria-describedby="tour-help">
+                            <option value="">-- Choose a Tour Type --</option>
                             <option value="accessible">Accessible Tour (2nd Thursday)</option>
-                            <option value="normal">Normal Tour (Tue, Thu, Sat)</option>
+                            <option value="normal">Regular Tour (Tue, Thu, Sat)</option>
                         </select>
+                        <p id="tour-help" class="help-text">Select a tour type to view available dates</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="selectedDate">Selected Date:</label>
-                        <input type="text" id="selectedDate" name="selectedDate" readonly required>
-                    </div>
+                    <div class="calendar-booking-wrapper">
+                        <div class="calendar-section">
+                            <div id="calendar" class="disabled" aria-label="Tour availability calendar"></div>
+                            <div class="calendar-legend">
+                                <h4>Availability Legend:</h4>
+                                <div class="legend-items">
+                                    <div class="legend-item">
+                                        <span class="legend-color status-available"></span>
+                                        <span>Available</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color status-fast"></span>
+                                        <span>Limited Spots</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-color status-full"></span>
+                                        <span>Fully Booked</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="numPax">Number of Pax:</label>
-                        <input type="number" id="numPax" name="numPax" min="1" max="10" required>
-                    </div>
+                        <div class="booking-form-section">
+                            <form id="bookingForm" class="booking-form" novalidate>
+                                <h3><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Complete Your Booking</h3>
+                                
+                                <div id="slotInfo" class="slot-info" aria-live="polite"></div>
 
-                    <div class="form-group">
-                        <label for="name">Your Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
+                                <div class="form-group">
+                                    <label for="selectedDate">Selected Date:</label>
+                                    <input type="text" id="selectedDate" name="selectedDate" readonly required 
+                                           aria-describedby="date-help" class="form-input" placeholder="Click on a calendar date">
+                                    <small id="date-help" class="help-text">Select a date from the calendar above</small>
+                                </div>
 
-                    <button type="submit">Submit Booking</button>
-                </form>
-            </div>
-        </div>
+                                <div class="form-group">
+                                    <label for="timeSelect">Preferred Time:</label>
+                                    <select id="timeSelect" name="timeSelect" required class="form-input">
+                                        <option value="">-- Select a time --</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="numPax">Number of People:</label>
+                                    <input type="number" id="numPax" name="numPax" min="1" max="10" required 
+                                           class="form-input" aria-describedby="pax-help" placeholder="e.g. 4">
+                                    <small id="pax-help" class="help-text">Maximum 10 people per booking</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name">Contact Name:</label>
+                                    <input type="text" id="name" name="name" required class="form-input" 
+                                           placeholder="Enter your full name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email Address:</label>
+                                    <input type="email" id="email" name="email" required class="form-input" 
+                                           placeholder="your@email.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone">Phone Number:</label>
+                                    <input type="tel" id="phone" name="phone" class="form-input" 
+                                           placeholder="Your contact number">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="specialRequests">Special Requirements (Optional):</label>
+                                    <textarea id="specialRequests" name="specialRequests" class="form-textarea" 
+                                              rows="4" placeholder="Any accessibility needs, dietary requirements, or special requests..."></textarea>
+                                </div>
+
+                                <button type="submit" class="submit-btn" disabled>
+                                    <i class="fa-solid fa-check-circle" aria-hidden="true"></i>
+                                    Submit Booking
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 Friends of Glasgow Botanic Gardens. All rights reserved.</p>
+        </footer>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const calendarEl = document.getElementById('calendar');
                 const tourTypeSelect = document.getElementById('tourType');
+                const bookingForm = document.getElementById('bookingForm');
+                const submitBtn = bookingForm.querySelector('.submit-btn');
 
-                const tourTypeDisplay = document.getElementById('tourTypeDisplay');
-                const tourTypeHidden = document.getElementById('tourTypeHidden');
+                // Enable/disable submit button based on form completion
+                function updateSubmitButton() {
+                    const requiredFields = bookingForm.querySelectorAll('[required]');
+                    const allFilled = Array.from(requiredFields).every(field => field.value.trim() !== '');
+                    submitBtn.disabled = !allFilled;
+                }
+
+                // Add event listeners to form inputs
+                const formInputs = bookingForm.querySelectorAll('input, select, textarea');
+                formInputs.forEach(input => {
+                    input.addEventListener('input', updateSubmitButton);
+                    input.addEventListener('change', updateSubmitButton);
+                });
 
                 const allEvents = [
-                // Accessible Tour – 2nd Thursday only
-                {
-                    title: 'Accessible Tour',
-                    rrule: {
-                    freq: 'monthly',
-                    bysetpos: 2,
-                    byweekday: 'th',
-                    dtstart: '2025-08-01T00:00:00'
+                    // Accessible Tour – 2nd Thursday only
+                    {
+                        title: 'Accessible Tour',
+                        rrule: {
+                            freq: 'monthly',
+                            bysetpos: 2,
+                            byweekday: 'th',
+                            dtstart: '2025-08-01T00:00:00'
+                        },
+                        extendedProps: {
+                            type: 'accessible',
+                            times: [
+                                { time: '11:00', available: 4, capacity: 10 },
+                                { time: '14:00', available: 2, capacity: 10 }
+                            ]
+                        }
                     },
-                    extendedProps: {
-                    type: 'accessible',
-                    times: [
-                        { time: '11:00', available: 4, capacity: 10 },
-                        { time: '14:00', available: 2, capacity: 10 }
-                    ]
-                    }
-                },
-                // Normal Tour – Tuesday
-                {
-                    title: 'Normal Tour – Tuesday',
-                    rrule: {
-                    freq: 'weekly',
-                    byweekday: 'tu',
-                    dtstart: '2025-08-05T00:00:00'
+                    // Normal Tour – Tuesday
+                    {
+                        title: 'Regular Tour – Tuesday',
+                        rrule: {
+                            freq: 'weekly',
+                            byweekday: 'tu',
+                            dtstart: '2025-08-05T00:00:00'
+                        },
+                        extendedProps: {
+                            type: 'normal',
+                            times: [
+                                { time: '11:00', available: 9, capacity: 10 }
+                            ]
+                        }
                     },
-                    extendedProps: {
-                    type: 'normal',
-                    times: [
-                        { time: '11:00', available: 9, capacity: 10 }
-                    ]
-                    }
-                },
-                // Normal Tour – Thursday
-                {
-                    title: 'Normal Tour – Thursday',
-                    rrule: {
-                    freq: 'weekly',
-                    byweekday: 'th',
-                    dtstart: '2025-08-07T00:00:00'
+                    // Normal Tour – Thursday
+                    {
+                        title: 'Regular Tour – Thursday',
+                        rrule: {
+                            freq: 'weekly',
+                            byweekday: 'th',
+                            dtstart: '2025-08-07T00:00:00'
+                        },
+                        extendedProps: {
+                            type: 'normal',
+                            times: [
+                                { time: '11:00', available: 5, capacity: 10 },
+                                { time: '14:00', available: 4, capacity: 10 }
+                            ]
+                        }
                     },
-                    extendedProps: {
-                    type: 'normal',
-                    times: [
-                        { time: '11:00', available: 5, capacity: 10 },
-                        { time: '14:00', available: 4, capacity: 10 }
-                    ]
+                    // Normal Tour – Saturday
+                    {
+                        title: 'Regular Tour – Saturday',
+                        rrule: {
+                            freq: 'weekly',
+                            byweekday: 'sa',
+                            dtstart: '2025-08-09T00:00:00'
+                        },
+                        extendedProps: {
+                            type: 'normal',
+                            times: [
+                                { time: '11:00', available: 10, capacity: 10 }
+                            ]
+                        }
                     }
-                },
-                // Normal Tour – Saturday
-                {
-                    title: 'Normal Tour – Saturday',
-                    rrule: {
-                    freq: 'weekly',
-                    byweekday: 'sa',
-                    dtstart: '2025-08-09T00:00:00'
-                    },
-                    extendedProps: {
-                    type: 'normal',
-                    times: [
-                        { time: '11:00', available: 10, capacity: 10 }
-                    ]
-                    }
-                }
                 ];
 
                 const calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                selectable: true,
+                    initialView: 'dayGridMonth',
+                    selectable: true,
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth'
+                    },
 
-                dateClick: function(info) {
-                    const selectedType = tourTypeSelect.value;
-                    if (!selectedType) return;
+                    dateClick: function(info) {
+                        const selectedType = tourTypeSelect.value;
+                        if (!selectedType) {
+                            alert('Please select a tour type first.');
+                            return;
+                        }
 
-                    const selectedDate = info.dateStr;
-                    document.getElementById('selectedDate').value = selectedDate;
+                        const selectedDate = info.dateStr;
+                        document.getElementById('selectedDate').value = selectedDate;
 
-                    const timeSelect = document.getElementById('timeSelect');
-                    timeSelect.innerHTML = '<option value="">-- Please select --</option>';
-                    document.getElementById('slotInfo').textContent = '';
+                        const timeSelect = document.getElementById('timeSelect');
+                        timeSelect.innerHTML = '<option value="">-- Select a time --</option>';
+                        document.getElementById('slotInfo').innerHTML = '';
 
-                    const matchingEvents = calendar.getEvents().filter(ev =>
-                    ev.startStr.startsWith(selectedDate) &&
-                    ev.extendedProps.type === selectedType
-                    );
+                        const matchingEvents = calendar.getEvents().filter(ev =>
+                            ev.startStr.startsWith(selectedDate) &&
+                            ev.extendedProps.type === selectedType
+                        );
 
-                    if (matchingEvents.length > 0) {
-                    const { title, extendedProps } = matchingEvents[0];
-                    const totalAvailable = extendedProps.times.reduce((a, b) => a + b.available, 0);
-                    const totalCapacity = extendedProps.times.reduce((a, b) => a + b.capacity, 0);
-                    document.getElementById('slotInfo').textContent = `${title} – ${totalAvailable}/${totalCapacity} slots left`;
+                        if (matchingEvents.length > 0) {
+                            const { title, extendedProps } = matchingEvents[0];
+                            const totalAvailable = extendedProps.times.reduce((a, b) => a + b.available, 0);
+                            const totalCapacity = extendedProps.times.reduce((a, b) => a + b.capacity, 0);
+                            
+                            document.getElementById('slotInfo').innerHTML = `
+                                <div class="slot-info-content">
+                                    <i class="fa-solid fa-info-circle" aria-hidden="true"></i>
+                                    <strong>${title}</strong> – ${totalAvailable}/${totalCapacity} slots available
+                                </div>
+                            `;
 
-                    extendedProps.times.forEach(slot => {
-                        const opt = document.createElement('option');
-                        const label = slot.time === '14:00' ? '2:00 PM' : '11:00 AM';
-                        opt.value = slot.time;
-                        opt.textContent = `${label} – ${slot.available}/${slot.capacity} slots${slot.available === 0 ? ' (Full)' : ''}`;
-                        opt.disabled = slot.available === 0;
-                        timeSelect.appendChild(opt);
-                    });
-                    } else {
-                    document.getElementById('slotInfo').textContent = "No matching tour on this date.";
+                            extendedProps.times.forEach(slot => {
+                                const opt = document.createElement('option');
+                                const label = slot.time === '14:00' ? '2:00 PM' : '11:00 AM';
+                                opt.value = slot.time;
+                                opt.textContent = `${label} – ${slot.available}/${slot.capacity} slots${slot.available === 0 ? ' (Full)' : ''}`;
+                                opt.disabled = slot.available === 0;
+                                timeSelect.appendChild(opt);
+                            });
+                        } else {
+                            document.getElementById('slotInfo').innerHTML = `
+                                <div class="slot-info-content error">
+                                    <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                                    No tours available on this date.
+                                </div>
+                            `;
+                        }
+
+                        updateSubmitButton();
+                        document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth' });
+                    },
+
+                    eventDidMount: function(info) {
+                        const times = info.event.extendedProps.times;
+                        const totalAvailable = times.reduce((a, b) => a + b.available, 0);
+                        const totalCapacity = times.reduce((a, b) => a + b.capacity, 0);
+                        const ratio = totalAvailable / totalCapacity;
+
+                        let status = 'status-available';
+                        if (ratio === 0) status = 'status-full';
+                        else if (ratio <= 0.3) status = 'status-fast';
+
+                        info.el.classList.add(status);
                     }
-
-                    document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth' });
-                },
-
-                eventDidMount: function(info) {
-                    const times = info.event.extendedProps.times;
-                    const totalAvailable = times.reduce((a, b) => a + b.available, 0);
-                    const totalCapacity = times.reduce((a, b) => a + b.capacity, 0);
-                    const ratio = totalAvailable / totalCapacity;
-
-                    let status = 'status-available';
-                    if (ratio === 0) status = 'status-full';
-                    else if (ratio <= 0.3) status = 'status-fast';
-
-                    info.el.classList.add(status);
-                }
                 });
 
                 tourTypeSelect.addEventListener('change', () => {
-                const selectedType = tourTypeSelect.value;
-                calendar.removeAllEvents();
-                calendar.unselect();
+                    const selectedType = tourTypeSelect.value;
+                    calendar.removeAllEvents();
+                    calendar.unselect();
 
-                if (selectedType) {
-                    const filtered = allEvents.filter(e => e.extendedProps.type === selectedType);
-                    calendar.addEventSource(filtered);
-                    calendarEl.classList.remove('disabled');
+                    // Clear form
+                    document.getElementById('selectedDate').value = '';
+                    document.getElementById('timeSelect').innerHTML = '<option value="">-- Select a time --</option>';
+                    document.getElementById('slotInfo').innerHTML = '';
 
-                    // Update form with selected tour type
-                    const selectedText = tourTypeSelect.options[tourTypeSelect.selectedIndex].textContent;
-                    tourTypeDisplay.value = selectedText;
-                    tourTypeHidden.value = selectedType;
-                } else {
-                    calendarEl.classList.add('disabled');
+                    if (selectedType) {
+                        const filtered = allEvents.filter(e => e.extendedProps.type === selectedType);
+                        calendar.addEventSource(filtered);
+                        calendarEl.classList.remove('disabled');
+                        document.querySelector('.help-text').textContent = 'Click on an available date to select it';
+                    } else {
+                        calendarEl.classList.add('disabled');
+                        document.querySelector('.help-text').textContent = 'Select a tour type to view available dates';
+                    }
+                    
+                    updateSubmitButton();
+                });
 
-                    // Clear form tour type
-                    tourTypeDisplay.value = '';
-                    tourTypeHidden.value = '';
-                }
+                // Form submission
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simple form validation and submission
+                    const formData = new FormData(bookingForm);
+                    const bookingData = Object.fromEntries(formData);
+                    
+                    alert('Booking submitted successfully! You will receive a confirmation email shortly.');
+                    console.log('Booking Data:', bookingData);
+                    
+                    // Reset form
+                    bookingForm.reset();
+                    updateSubmitButton();
                 });
 
                 calendar.render();
             });
         </script>
-
-
-
-
     </body>
 </html>

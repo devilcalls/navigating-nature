@@ -2,76 +2,123 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Explore the Glasgow Botanic Gardens Tree Trail online - an interactive digital companion featuring twenty tree specimens with detailed information and QR code access.">
         <title>Tree Trail Online - Glasgow Botanic Gardens</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <!--Navigation Bar-->
         <header>
-            <img src="glasgow_logo.png" alt="Botanic Gardens Logo">
+            <img src="glasgow_logo.png" alt="Glasgow Botanic Gardens Logo">
             <h2 class="name-title">FRIENDS OF GLASGOW BOTANIC GARDENS</h2>
         </header>
 
-        <nav class="navbar">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
             <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">The Friends <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Become a friend</a></li>
-                        <li><a href="#">Donate</a></li>
+                <li class="nav-disabled"><span>Home</span></li>
+                
+                <li class="dropdown nav-disabled">
+                    <span>The Friends <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></span>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">About Us</span></li>
+                        <li role="menuitem"><span class="disabled-link">Become a friend</span></li>
+                        <li role="menuitem"><span class="disabled-link">Donate</span></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#">The Gardens <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">History</a></li>
-                        <li><a href="tree-trail.html">Tree Trail</a></li>
+                    <a href="#" aria-expanded="false" aria-haspopup="true">The Gardens <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></a>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">History</span></li>
+                        <li role="menuitem"><a href="tree-trail.html">Tree Trail</a></li>
                     </ul>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#">Education <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">RBGE Certificate in Practical Horticulture</a></li>
+                <li class="dropdown nav-disabled">
+                    <span>Education <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></span>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">RBGE Certificate in Practical Horticulture</span></li>
                     </ul>
                 </li>
 
-                <li><a href="#">News</a></li>
+                <li class="nav-disabled"><span>News</span></li>
 
                 <li class="dropdown">
-                    <a href="#">Visit <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="event-booking.html">Tours</a></li>
-                        <li><a href="#">Getting Here</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Frequent Ask Questions</a></li>
+                    <a href="#" aria-expanded="false" aria-haspopup="true">Visit <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></a>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><a href="event-booking.html" aria-current="page">Tours</a></li>
+                        <li role="menuitem"><span class="disabled-link">Getting Here</span></li>
+                        <li role="menuitem"><span class="disabled-link">Contact</span></li>
+                        <li role="menuitem"><span class="disabled-link">Frequently Asked Questions</span></li>
                     </ul>
                 </li>
             </ul>
         </nav>
 
-        <div class="container container-tree">
-            <h1 class="tree-title">Tree Trail Online</h1>
+        <main class="container container-tree">
+            <header class="hero-section">
+                <h1 class="tree-title">Tree Trail Online</h1>
+                <p class="hero-subtitle"><em>An interactive digital companion to the Glasgow Botanic Gardens Tree Trail</em></p>
+            </header>
+
+            <section class="gallery-section" aria-label="Garden image gallery">
                 <div class="gallery">
-                    <img src="begonias.jpg" alt="Image 1">
-                    <img src="tour.jpg" alt="Image 2">
-                    <img src="orchirds.jpg" alt="Image 3">
+                    <figure class="gallery-item">
+                        <img src="begonias.jpg" alt="Colorful begonia flowers in the botanical gardens" loading="lazy">
+                        <figcaption class="sr-only">Beautiful begonia display</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="tour.jpg" alt="Visitors enjoying a guided tour through the gardens" loading="lazy">
+                        <figcaption class="sr-only">Garden tour in progress</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="orchirds.jpg" alt="Exotic orchid collection in the greenhouse" loading="lazy">
+                        <figcaption class="sr-only">Orchid greenhouse display</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fa-solid fa-tree" aria-hidden="true"></i>
+                        <h3>20 Tree Specimens</h3>
+                        <p>Discover detailed information about twenty carefully selected tree specimens along our trail.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fa-solid fa-qrcode" aria-hidden="true"></i>
+                        <h3>QR Code Access</h3>
+                        <p>Scan QR codes on plant labels with your mobile device for instant access to detailed information.</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fa-solid fa-mobile-alt" aria-hidden="true"></i>
+                        <h3>Mobile Friendly</h3>
+                        <p>Optimized for mobile devices to enhance your on-site experience while exploring the gardens.</p>
+                    </div>
                 </div>
 
+                <div class="description">
+                    <p>This comprehensive digital resource provides extended information on all twenty tree specimens featured along the Glasgow Botanic Gardens Tree Trail. Each entry includes botanical details, historical context, and interesting facts about these remarkable trees.</p>
+                    
+                    <p>Whether you're visiting the gardens or exploring from home, this online companion enhances your understanding and appreciation of our diverse tree collection.</p>
+                </div>
+            </section>
 
-            <p><em>An online companion to the Glasgow Botanic Gardens Tree Trail</em></p>
+            <section class="cta-section">
+                <a class="enter-btn" href="corsican-pine.html" aria-label="Start exploring the Tree Trail">
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    Start Your Journey
+                </a>
+            </section>
+        </main>
 
-            <p>This digital resource provides extended information on all twenty tree specimens featured along the Glasgow Botanic Gardens Tree Trail.</p>
-
-            <p>When using a mobile device, you can access these details by scanning the QR codes displayed on the corresponding plant labels.</p>
-
-            <div style="display: flex; justify-content: center;padding-top:15px">
-                <a class="enter-btn" href="corsican-pine.html">Enter Tree Trail</a>
-            </div>
-        </div>
+        <footer class="site-footer">
+            <p>&copy; 2025 Friends of Glasgow Botanic Gardens. All rights reserved.</p>
+        </footer>
     </body>
 </html>

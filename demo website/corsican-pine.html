@@ -2,94 +2,221 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>01. Corsican Pine</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Learn about the Corsican Pine (Pinus nigra subsp. laricio) in Glasgow Botanic Gardens - native range, ecological importance, and conservation status.">
+        <title>01. Corsican Pine - Tree Trail - Glasgow Botanic Gardens</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <!--Navigation Bar-->
         <header>
-            <img src="glasgow_logo.png" alt="Botanic Gardens Logo">
+            <img src="glasgow_logo.png" alt="Glasgow Botanic Gardens Logo">
             <h2 class="name-title">FRIENDS OF GLASGOW BOTANIC GARDENS</h2>
         </header>
 
-        <nav class="navbar">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
             <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li class="dropdown">
-                    <a href="#">The Friends <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Become a friend</a></li>
-                        <li><a href="#">Donate</a></li>
+                <li class="nav-disabled"><span>Home</span></li>
+                
+                <li class="dropdown nav-disabled">
+                    <span>The Friends <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></span>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">About Us</span></li>
+                        <li role="menuitem"><span class="disabled-link">Become a friend</span></li>
+                        <li role="menuitem"><span class="disabled-link">Donate</span></li>
                     </ul>
                 </li>
 
                 <li class="dropdown">
-                    <a href="#">The Gardens <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">History</a></li>
-                        <li><a href="tree-trail.html">Tree Trail</a></li>
+                    <a href="#" aria-expanded="false" aria-haspopup="true">The Gardens <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></a>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">History</span></li>
+                        <li role="menuitem"><a href="tree-trail.html">Tree Trail</a></li>
                     </ul>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#">Education <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="#">RBGE Certificate in Practical Horticulture</a></li>
+                <li class="dropdown nav-disabled">
+                    <span>Education <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></span>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><span class="disabled-link">RBGE Certificate in Practical Horticulture</span></li>
                     </ul>
                 </li>
 
-                <li><a href="#">News</a></li>
+                <li class="nav-disabled"><span>News</span></li>
 
                 <li class="dropdown">
-                    <a href="#">Visit <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px"></i></a>
-                    <ul class="dropdown-content">
-                        <li><a href="event-booking.html">Tours</a></li>
-                        <li><a href="#">Getting Here</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Frequent Ask Questions</a></li>
+                    <a href="#" aria-expanded="false" aria-haspopup="true">Visit <i class="fa-solid fa-chevron-down" style="font-size:10px; padding-left:3px" aria-hidden="true"></i></a>
+                    <ul class="dropdown-content" role="menu">
+                        <li role="menuitem"><a href="event-booking.html">Tours</a></li>
+                        <li role="menuitem"><span class="disabled-link">Getting Here</span></li>
+                        <li role="menuitem"><span class="disabled-link">Contact</span></li>
+                        <li role="menuitem"><span class="disabled-link">Frequently Asked Questions</span></li>
                     </ul>
                 </li>
             </ul>
         </nav>
 
-        <div class="container container-div">
-            <div style="border-right: 1.5px solid black;">
-                <h1 style="margin-top: 0px;">01. Corsican Pine</h1>
-                <p><em>Pinus nigra</em> subsp. <em>laricio</em> Maire</p>
+        <main class="tree-detail-main">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb" aria-label="Breadcrumb navigation">
+                <ol class="breadcrumb-list">
+                    <li><span class="breadcrumb-disabled">Home</span></li>
+                    <li><a href="tree-trail.html" class="breadcrumb-link">Tree Trail</a></li>
+                    <li class="breadcrumb-current" aria-current="page">Corsican Pine</li>
+                </ol>
+            </nav>
 
-                <p><strong>Native Range:</strong> From Sicily, Corsica and southern mainland Italy, westwards through Southern Europe.</p>
+            <div class="tree-container">
+                <div class="tree-content">
+                    <!-- Tree Header Section -->
+                    <header class="tree-header">
+                        <div class="tree-number">01</div>
+                        <div class="tree-title-section">
+                            <h1 class="tree-name">Corsican Pine</h1>
+                            <p class="scientific-name"><em>Pinus nigra</em> subsp. <em>laricio</em> Maire</p>
+                        </div>
+                    </header>
 
-                <p>Introduced to the British Isles in 1759, the Corsican Pine was cultivated for forestry and parkland use.</p>
+                    <!-- Quick Facts Section -->
+                    <section class="quick-facts" aria-label="Quick facts about Corsican Pine">
+                        <h2 class="section-title">
+                            <i class="fa-solid fa-info-circle" aria-hidden="true"></i>
+                            Quick Facts
+                        </h2>
+                        <div class="facts-grid">
+                            <div class="fact-item">
+                                <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                                <strong>Native Range:</strong>
+                                <span>Sicily, Corsica, Southern Italy, Southern Europe</span>
+                            </div>
+                            <div class="fact-item">
+                                <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                                <strong>Introduced to Britain:</strong>
+                                <span>1759</span>
+                            </div>
+                            <div class="fact-item">
+                                <i class="fa-solid fa-tree" aria-hidden="true"></i>
+                                <strong>Uses:</strong>
+                                <span>Forestry, Parkland cultivation</span>
+                            </div>
+                            <div class="fact-item">
+                                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                                <strong>Conservation Status:</strong>
+                                <span>Declining due to Red Band Needle Blight</span>
+                            </div>
+                        </div>
+                    </section>
 
-                <p>A commercially important tree but problems with a disease called ‘Red Band Needle Blight’ have led to a decline in planting.
-                   Corsican Pine plantations support a high number of invertebrate species. The Bordered White Moth (<em>Bupalus piniaria</em> L.) is particularly associated with it.
-                   <em>Pinus nigra</em> is considered invasive in New Zealand, where it shades out native grasses and plants.
-                </p>
+                    <!-- Main Content Section -->
+                    <section class="tree-description" aria-label="Detailed information about Corsican Pine">
+                        <h2 class="section-title">
+                            <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                            About This Tree
+                        </h2>
+                        
+                        <div class="content-card">
+                            <p>Introduced to the British Isles in 1759, the Corsican Pine was cultivated for forestry and parkland use. This magnificent conifer has played an important role in British forestry for over two centuries.</p>
+                            
+                            <p>A commercially important tree, the Corsican Pine faces challenges from a disease called 'Red Band Needle Blight' which has led to a decline in planting. Despite these challenges, Corsican Pine plantations support a high number of invertebrate species, making them ecologically valuable.</p>
+                            
+                            <p>The Bordered White Moth (<em>Bupalus piniaria</em> L.) is particularly associated with this species, demonstrating the important ecological relationships that develop between trees and their associated wildlife.</p>
+                        </div>
 
-                <p>At the Glasgow Botanic Gardens, a wide range of pine species is maintained, including Pinus wallichiana (Bhutan Pine), which grows naturally in the Himalayas and is occasionally used to produce turpentine.</p>
+                        <div class="highlight-box">
+                            <h3><i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i> Conservation Note</h3>
+                            <p><em>Pinus nigra</em> is considered invasive in New Zealand, where it shades out native grasses and plants, highlighting the importance of understanding ecological context when introducing species to new environments.</p>
+                        </div>
+                    </section>
 
-                <p>The arboretum also features specimens like Pinus coulteri from California and Pinus ponderosa (Western Yellow Pine), originally collected by David Douglas in 1826 from eastern Washington.</p>
-            </div>
-            <div>
-                <video width="100%" controls>
-                    <source src="sample.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div>
-                    <div>
-                        <p>Royal Forestry Society: <a href="https://www.rfs.org.uk" target="_blank">www.rfs.org.uk</a><br>
-                        UKMoths: <a href="https://www.ukmoths.org.uk" target="_blank">UKMoths.org.uk</a></p>
-
-                        <p><strong>Eckenwalder, J.</strong> (2009) <em>Conifers of the World</em>, Timber Press</p>
-                    </div>
+                    <!-- Glasgow Botanic Gardens Context -->
+                    <section class="garden-context" aria-label="Corsican Pine in Glasgow Botanic Gardens">
+                        <h2 class="section-title">
+                            <i class="fa-solid fa-seedling" aria-hidden="true"></i>
+                            In Our Gardens
+                        </h2>
+                        
+                        <div class="content-card">
+                            <p>At the Glasgow Botanic Gardens, we maintain a wide range of pine species as part of our comprehensive tree collection. Our arboretum features notable specimens including:</p>
+                            
+                            <ul class="species-list">
+                                <li><strong>Pinus wallichiana</strong> (Bhutan Pine) - grows naturally in the Himalayas and is occasionally used to produce turpentine</li>
+                                <li><strong>Pinus coulteri</strong> - a distinctive species from California</li>
+                                <li><strong>Pinus ponderosa</strong> (Western Yellow Pine) - originally collected by David Douglas in 1826 from eastern Washington</li>
+                            </ul>
+                            
+                            <p>This diverse collection allows visitors to compare different pine species and understand their varied adaptations and uses.</p>
+                        </div>
+                    </section>
                 </div>
-            </div>
-        </div>
 
-        <div class="button-next">
-            <a class="next-btn" href="#">NEXT TREE<i class="fa-solid fa-angle-right" style= "padding-left: 10px;"></i></a>
-        </div>
+                <!-- Media Section -->
+                <aside class="tree-media" aria-label="Corsican Pine media content">
+                    <div class="media-container">
+                        <video class="tree-video" controls preload="metadata" poster="corsican-pine-poster.jpg">
+                            <source src="sample.mp4" type="video/mp4">
+                            <p>Your browser does not support the video tag. <a href="sample.mp4">Download the video</a> instead.</p>
+                        </video>
+                        
+                        <div class="media-caption">
+                            <p><strong>Video:</strong> Explore the characteristics and ecological importance of the Corsican Pine</p>
+                        </div>
+                    </div>
+
+                    <!-- Additional Resources -->
+                    <div class="resources-section">
+                        <h3 class="resources-title">
+                            <i class="fa-solid fa-external-link-alt" aria-hidden="true"></i>
+                            Further Reading
+                        </h3>
+                        
+                        <div class="resources-links">
+                            <a href="https://www.rfs.org.uk" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                                Royal Forestry Society
+                                <i class="fa-solid fa-external-link-alt" aria-hidden="true"></i>
+                            </a>
+                            
+                            <a href="https://www.ukmoths.org.uk" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                <i class="fa-solid fa-bug" aria-hidden="true"></i>
+                                UKMoths.org.uk
+                                <i class="fa-solid fa-external-link-alt" aria-hidden="true"></i>
+                            </a>
+                        </div>
+
+                        <div class="bibliography">
+                            <h4>References:</h4>
+                            <p><strong>Eckenwalder, J.</strong> (2009) <em>Conifers of the World</em>, Timber Press</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Navigation Controls -->
+            <nav class="tree-navigation" aria-label="Tree trail navigation">
+                <a href="tree-trail.html" class="nav-btn back-btn">
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    Back to Trail
+                </a>
+                
+                <div class="tree-counter">
+                    <span class="current-tree">1</span>
+                    <span class="separator">of</span>
+                    <span class="total-trees">20</span>
+                </div>
+                
+                <a href="#" class="nav-btn next-btn">
+                    Next Tree
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </nav>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 Friends of Glasgow Botanic Gardens. All rights reserved.</p>
+        </footer>
     </body>
 </html>
