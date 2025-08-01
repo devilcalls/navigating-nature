@@ -712,6 +712,226 @@ small {
     border-radius: 8px;
   }
 }
+
+/* Streamlined Reflections Section Styles */
+.reflections-container {
+  display: grid;
+  gap: 2.5rem;
+  margin: 3rem 0;
+}
+
+.reflection-card {
+  background: var(--clr-glass);
+  border: 2px solid var(--clr-glass-border);
+  border-radius: var(--border-radius);
+  padding: 0;
+  box-shadow: var(--clr-shadow);
+  transition: var(--transition);
+  overflow: hidden;
+  position: relative;
+}
+
+.reflection-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+
+.reflection-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(44, 62, 80, 0.2);
+  border-color: var(--clr-primary);
+}
+
+.reflection-card:hover::before {
+  transform: scaleX(1);
+}
+
+.reflection-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 2rem 1rem 2rem;
+  background: linear-gradient(135deg, 
+    rgba(44, 62, 80, 0.05) 0%, 
+    rgba(44, 62, 80, 0.02) 100%
+  );
+  border-bottom: 1px solid var(--clr-glass-border);
+}
+
+.reflection-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--clr-primary);
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.reflection-card:hover .reflection-avatar {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
+}
+
+.reflection-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--clr-primary);
+  font-weight: 600;
+}
+
+.reflection-role {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.reflection-content {
+  padding: 1.5rem 2rem 2rem 2rem;
+}
+
+.reflection-text h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0 0 1.2rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--clr-primary);
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(44, 62, 80, 0.1);
+}
+
+.reflection-text h4 i {
+  color: var(--clr-accent);
+  font-size: 1rem;
+}
+
+.reflection-paragraph {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--clr-text);
+  font-size: 1.05rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Template highlight styling */
+.reflection-paragraph:has([contains('[TEMPLATE:')]) {
+  background: rgba(241, 196, 15, 0.08);
+  border-left: 4px solid #f1c40f;
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-style: italic;
+  color: var(--clr-text-muted);
+  margin: 0;
+}
+
+/* Enhanced template styling for better visibility */
+.reflection-paragraph {
+  position: relative;
+}
+
+.reflection-paragraph:contains('[TEMPLATE:') {
+  background: linear-gradient(135deg, 
+    rgba(241, 196, 15, 0.1) 0%, 
+    rgba(241, 196, 15, 0.05) 100%
+  );
+  border: 1px dashed #f39c12;
+  border-left: 4px solid #f1c40f;
+  padding: 1.5rem;
+  border-radius: 8px;
+  font-style: italic;
+  color: var(--clr-text-muted);
+  position: relative;
+}
+
+.reflection-paragraph:contains('[TEMPLATE:')::before {
+  content: '📝 Template';
+  position: absolute;
+  top: -12px;
+  left: 12px;
+  background: #f1c40f;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .reflections-container {
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .reflection-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .reflection-avatar {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .reflection-content {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .reflection-text h4 {
+    font-size: 1.1rem;
+    gap: 0.6rem;
+  }
+  
+  .reflection-paragraph {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .reflection-header {
+    padding: 1rem;
+  }
+  
+  .reflection-content {
+    padding: 1rem;
+  }
+  
+  .reflection-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .reflection-info h3 {
+    font-size: 1.2rem;
+  }
+  
+  .reflection-role {
+    font-size: 0.9rem;
+  }
+  
+  .reflection-paragraph {
+    font-size: 0.95rem;
+  }
+}
   </style>
 </head>
 
@@ -946,6 +1166,15 @@ small {
   <div id="proto-grid" class="grid grid-3"></div>
 </section>
 
+<section id="justification" data-aos="fade-up">
+  <h2>Justification</h2>
+  <p>
+    We chose multiple complementary solutions over a single approach because accessibility needs are highly diverse and context-dependent. 
+    No single solution can fully address the requirements of all users, especially in environments like public gardens where visitors may have varying sensory, physical, and technological needs. 
+    By combining tactile (Braille, textured guidebook), visual (large print, sign language videos), and digital (QR codes, accessible website) options, we ensure that each visitor can engage with the tour in a way that suits them best. 
+    This layered strategy also provides redundancy—if one method is unavailable or ineffective for a user, alternative formats are always accessible. Ultimately, our multi-modal approach maximizes inclusion, flexibility, and real-world usability.
+  </p>
+
 <section id="team" data-aos="fade-up">
   <h2>Team 6 Members</h2>
   <div class="card" data-aos="zoom-in">
@@ -1063,6 +1292,131 @@ small {
       ">
         <i class="fa-brands fa-linkedin"></i> LinkedIn
       </a>
+    </div>
+  </div>
+</section>
+
+<section id="reflections" data-aos="fade-up">
+  <h2>Team Reflections</h2>
+  <p>
+    In this section, each team member shares their personal reflections on the project. 
+    We discuss our experiences collaborating with the Glasgow Botanic Gardens, highlight our individual contributions, and honestly reflect on what we are proud of and what we wish we had done differently. 
+    These insights provide a deeper understanding of our journey and growth throughout the project.
+  </p>
+
+  <div class="reflections-container">
+    <!-- Tee Yu Cheng -->
+    <div class="reflection-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="reflection-header">
+        <img src="img/member-cheng.jpg" alt="Tee Yu Cheng" class="reflection-avatar">
+        <div class="reflection-info">
+          <h3>Tee Yu Cheng</h3>
+          <p class="reflection-role">Project Website Developer, Video Content Creator</p>
+        </div>
+      </div>
+      <div class="reflection-content">
+        <div class="reflection-text">
+          <h4><i class="fas fa-quote-left"></i> Personal Reflection</h4>
+          <p class="reflection-paragraph">
+            [TEMPLATE: Write a comprehensive paragraph (200-300 words) that addresses: Your experience collaborating with Glasgow Botanic Gardens staff and how their feedback shaped your work • Your key contributions to the project (website development, video creation, technical implementations) • What you're most proud of achieving and any skills you developed • What you would approach differently with hindsight and lessons learned • How this accessibility-focused project changed your perspective on inclusive design and what you'll carry forward to future work]
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Farm Yong Wei -->
+    <div class="reflection-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="reflection-header">
+        <img src="img/member-farm.jpg" alt="Farm Yong Wei" class="reflection-avatar">
+        <div class="reflection-info">
+          <h3>Farm Yong Wei</h3>
+          <p class="reflection-role">Accessibility and Inclusion Coordinator</p>
+        </div>
+      </div>
+      <div class="reflection-content">
+        <div class="reflection-text">
+          <h4><i class="fas fa-quote-left"></i> Personal Reflection</h4>
+          <p class="reflection-paragraph">
+            [TEMPLATE: Write a comprehensive paragraph (200-300 words) that addresses: Your interactions with Glasgow Botanic Gardens regarding accessibility requirements and current visitor needs • Your key contributions to accessibility research, stakeholder engagement, and ensuring inclusive design standards • What you're most proud of in terms of making the project truly inclusive and removing accessibility barriers • What accessibility testing, user feedback collection, or stakeholder engagement approaches you'd refine in future projects • How this project deepened your understanding of accessibility needs and inclusive design in public spaces]
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dan Lai Kai Yi -->
+    <div class="reflection-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="reflection-header">
+        <img src="img/member-dan.jpg" alt="Dan Lai Kai Yi" class="reflection-avatar">
+        <div class="reflection-info">
+          <h3>Dan Lai Kai Yi</h3>
+          <p class="reflection-role">Interactive Systems Developer & Experience Designer</p>
+        </div>
+      </div>
+      <div class="reflection-content">
+        <div class="reflection-text">
+          <h4><i class="fas fa-quote-left"></i> Personal Reflection</h4>
+          <p class="reflection-paragraph">
+            [TEMPLATE: Write a comprehensive paragraph (200-300 words) that addresses: How you worked with the gardens to understand their current tour experience and technical requirements • Your key contributions to interactive user experiences, user journey flows, and interface design across prototypes • What you're most proud of in terms of user experience solutions and accessibility improvements • What interaction design decisions, user testing approaches, or technical implementation choices you'd refine • How designing for accessibility changed your approach to UX design and what new interaction design principles you discovered]
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Putri Nadrah -->
+    <div class="reflection-card" data-aos="fade-up" data-aos-delay="400">
+      <div class="reflection-header">
+        <img src="img/member-putri.jpg" alt="Putri Nadrah Binte Jefreydin" class="reflection-avatar">
+        <div class="reflection-info">
+          <h3>Putri Nadrah Binte Jefreydin</h3>
+          <p class="reflection-role">Web Designer</p>
+        </div>
+      </div>
+      <div class="reflection-content">
+        <div class="reflection-text">
+          <h4><i class="fas fa-quote-left"></i> Personal Reflection</h4>
+          <p class="reflection-paragraph">
+            [TEMPLATE: Write a comprehensive paragraph (200-300 words) that addresses: How you incorporated Glasgow Botanic Gardens' branding and visual identity into your designs and how their aesthetic preferences influenced your choices • Your key contributions to visual design systems, accessible color schemes, typography, and design system components • What you're most proud of in terms of balancing aesthetics with accessibility and overcoming design challenges • What design decisions, visual hierarchy choices, or accessibility considerations you'd approach differently • How designing for accessibility broadened your design perspective and what new visual design principles you learned]
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Howard Yeo -->
+    <div class="reflection-card" data-aos="fade-up" data-aos-delay="500">
+      <div class="reflection-header">
+        <img src="img/member-howard.jpg" alt="Howard Yeo Hong Ding" class="reflection-avatar">
+        <div class="reflection-info">
+          <h3>Howard Yeo Hong Ding</h3>
+          <p class="reflection-role">Inclusive Design Officer</p>
+        </div>
+      </div>
+      <div class="reflection-content">
+        <div class="reflection-text">
+          <h4><i class="fas fa-quote-left"></i> Personal Reflection</h4>
+          <p class="reflection-paragraph">
+            [TEMPLATE: Write a comprehensive paragraph (200-300 words) that addresses: Your experience understanding the gardens' current accessibility challenges and gathering insights about visitor needs • Your key contributions to inclusive design research, methodology, accessibility auditing, and applying inclusive design frameworks • What you're most proud of in terms of making the project truly inclusive and guiding the team's design decisions • What inclusive design processes, research methods, or stakeholder engagement approaches you'd refine • How this project advanced your understanding of inclusive design and what new perspectives on accessibility you gained]
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chiam Xun Yin -->
+    <div class="reflection-card" data-aos="fade-up" data-aos-delay="600">
+      <div class="reflection-header">
+        <img src="img/member-xunyin.jpg" alt="Chiam Xun Yin" class="reflection-avatar">
+        <div class="reflection-info">
+          <h3>Chiam Xun Yin</h3>
+          <p class="reflection-role">Strategist - Interactive & Digital Experiences</p>
+        </div>
+      </div>
+      <div class="reflection-content">
+        <div class="reflection-text">
+          <h4><i class="fas fa-quote-left"></i> Personal Reflection</h4>
+          <p class="reflection-paragraph">
+            [TEMPLATE: Write a comprehensive paragraph (200-300 words) that addresses: How you developed the strategic approach with Glasgow Botanic Gardens and aligned project goals with their long-term accessibility vision • Your key contributions to overall project strategy, digital experience framework, cross-prototype integration, and strategic planning methodologies • What you're most proud of in terms of strategic decisions that shaped the project's direction and ensured cohesive solutions • What strategic decisions, project coordination approaches, or integration methods you'd refine in future projects • How strategizing for accessibility projects expanded your strategic thinking and what new approaches to digital experience strategy you developed]
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
